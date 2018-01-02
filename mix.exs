@@ -2,7 +2,7 @@ defmodule ExAequo.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :traverse,
+    [app: :ex_aequo,
      version: "0.1.0",
      elixir: "~> 1.5.1",
      build_embedded: Mix.env == :prod,
@@ -24,7 +24,7 @@ defmodule ExAequo.Mixfile do
 
   defp description do
     """
-    Traverse is a toolset to walk arbitrary Elixir Datastructures in a functional way.
+    ExAequo Elixir Tools
     """
   end
 
