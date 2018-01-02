@@ -30,7 +30,7 @@ defmodule ExAequo.Mixfile do
 
   defp package do
     [
-      files:       [ "lib", "tasks", "mix.exs", "README.md", "LICENSE" ],
+      files:       [ "lib", "mix.exs", "README.md", "LICENSE" ],
       maintainers: [
                      "Robert Dober <robert.dober@gmail.com>"
                    ],
