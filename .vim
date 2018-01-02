@@ -1,0 +1,1 @@
+abbrev EA ExAequo
