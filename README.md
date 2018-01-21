@@ -6,3 +6,9 @@
 [![Inline docs](http://inch-ci.org/github/RobertDober/ex_aequo.svg?branch=master)](http://inch-ci.org/github/RobertDober/ex_aequo)
 
 ExAequo Elixir Tools
+
+Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
+being equal, I choose this one.
+
+<!-- begin @doc ExAequo.Enum -->
+<!-- end @doc ExAequo.Enum -->

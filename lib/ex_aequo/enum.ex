@@ -22,14 +22,13 @@ defmodule ExAequo.Enum do
         iex> add_same = fn {x, a}, {y, b} ->
         ...>               cond do
         ...>                 x == y -> {:cont, {x, a + b}}
-        ...>                  true   -> {:stop, nil} end end
+        ...>                 true   -> {:stop, nil} end end
         ...> E.grouped_reduce(
         ...>   [{:a, 1}, {:a, 2}, {:b, 3}, {:b, 4}], add_same)
         [{:b, 7}, {:a, 3}]
 
     The `grouped_inject` function behaves almost identically to `grouped_reduce`,
-    however an initial value is provided
-
+    however an initial value is provided.
 
         iex> sub_same = fn {x, a}, {y, b} -> 
         ...>               cond do
