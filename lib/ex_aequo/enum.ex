@@ -42,8 +42,11 @@ defmodule ExAequo.Enum do
         [a: 42, b: 0, c: 0]
   """
 
+  @type grouped_accumulator(ele_type, result_type) :: (ele_type , ele_type -> {:cont | :stop, result_type})
 
   @doc false
+  @spec grouped_reduce( list(ele_type), grouped_accumulator(ele_type, result_type), Keyword.t )
+    :: list(result_type) when ele_type: any(), result_type: any()
   def grouped_reduce(xs, gacc_fn, options \\ [])
   def grouped_reduce([], _, _), do: []
   def grouped_reduce([x|xs], f, options) do
@@ -55,6 +58,8 @@ defmodule ExAequo.Enum do
   end
 
   @doc false
+  @spec grouped_inject( list(ele_type), ele_type, grouped_accumulator(ele_type, result_type), Keyword.t )
+    :: list(result_type) when ele_type: any(), result_type: any()
   def grouped_inject(xs, initial, gacc_fn, options \\ [])
   def grouped_inject(xs, initial, f, options) do
     if options[:reverse] do
@@ -64,6 +69,8 @@ defmodule ExAequo.Enum do
     end
   end
 
+  @spec grouped_acc_impl( list(ele_type), ele_type, grouped_accumulator(ele_type, result_type), Keyword.t )
+    :: list(result_type) when ele_type: any(), result_type: any()
   defp grouped_acc_impl(xs, acc, f, result)
   defp grouped_acc_impl([], acc, _, result), do: [acc|result]
   defp grouped_acc_impl([x|xs], acc, f, result) do
