@@ -4,7 +4,7 @@ defmodule ExAequo.Mixfile do
   def project do
     [app: :ex_aequo,
      version: "0.1.0",
-     elixir: "~> 1.5.1",
+     elixir: "~> 1.5",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
@@ -44,7 +44,9 @@ defmodule ExAequo.Mixfile do
   defp deps do
     [
       {:ex_doc, ">= 0.18.1", only: :dev},
-      {:read_doc, ">= 0.1.0", only: :dev},
+      {:read_doc, ">= 0.1.1", only: :dev},
+      # {:read_doc, git: "https://github.com/RobertDober/read_doc.git", tag: "0.1.1", only: :dev},
+      # {:read_doc, path: "/home/robert/log/elixir/read_doc", only: :dev},
       {:dialyxir, "~> 0.5.1", only: :dev},
       {:excoveralls, "~> 0.8.0", only: :test},
     ]
