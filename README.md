@@ -49,3 +49,7 @@ being equal, I choose this one.
       ...>  {:a, 43}, sub_same, reverse: true)
       [a: 42, b: 0, c: 0]
 <!-- end @doc ExAequo.Enum -->
+
+<!-- begin @doc ExAequo.CLTools -->
+<!-- end @doc ExAequo.CLTools -->
+

@@ -4,7 +4,7 @@ defmodule ExAequo.Mixfile do
   def project do
     [app: :ex_aequo,
      version: "0.1.0",
-     elixir: "~> 1.5",
+     elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
