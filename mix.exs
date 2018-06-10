@@ -48,6 +48,7 @@ defmodule ExAequo.Mixfile do
       # {:read_doc, git: "https://github.com/RobertDober/read_doc.git", tag: "0.1.1", only: :dev},
       # {:read_doc, path: "/home/robert/log/elixir/read_doc", only: :dev},
       {:dialyxir, "~> 0.5.1", only: :dev},
+      {:mox, "~> 0.3.2", only: :test},
       {:excoveralls, "~> 0.8.0", only: :test},
       {:mox, "~> 0.3.2", only: :test},
     ]
