@@ -15,15 +15,22 @@ defmodule ExAequo.CLTools do
   """
   def today wc do
     wc
-    |> files()
+    |> files_with_stat()
     |> Stream.filter(&is_today?/1)
   end
 
 
+  def files wc do
+    with abs_path <- @sys_interface.expand_path(wc) do
+      abs_path
+      |> Path.wildcard()
+    end
+  end
+
   @doc """
   expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`
   """
-  def files wc do
+  def files_with_stat wc do
     with abs_path <- @sys_interface.expand_path(wc) do
       abs_path
       |> Path.wildcard()

@@ -1,16 +1,38 @@
 defmodule ExAequo.CLToolsTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
-  alias ExAequo.SysInterface.Mock
-  alias ExAequo.CLTools
+  import Mox
+  setup :verify_on_exit!
+
 
   test "correct behavior of #files" do 
-    Mock.clear
+    SysInterface.Mox
+    |> expect(:lstat, &local_lstat/1)
 
-    Mock.invocation_of :expand_path, "some_dir" 
-    CLTools.files "~/hello"
+    {status, _} = SysInterface.Mox.lstat("hello")
+    assert status == :ok
 
-    assert Mock.messages() == [{:expand_path, ["~/hello"]}]
-    
+  end
+
+
+  @local_files %{"hello" => {:ok,
+    %File.Stat{
+      access: :read_write,
+      atime: {{2018, 5, 26}, {12, 2, 56}},
+      ctime: {{2018, 4, 18}, {14, 58, 36}},
+      gid: 1000,
+      inode: 923418, 
+      links: 1,
+      major_device: 2049,
+      minor_device: 0,
+      mode: 33204,
+      mtime: {{2018, 4, 18}, {14, 57, 8}},
+      size: 40,
+      type: :regular,
+      uid: 1000
+    }}
+  }
+  defp local_lstat filename do
+    Map.get @local_files, filename
   end
 end

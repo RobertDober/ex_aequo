@@ -19,7 +19,7 @@ defmodule ExAequo.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   defp description do
@@ -49,6 +49,7 @@ defmodule ExAequo.Mixfile do
       # {:read_doc, path: "/home/robert/log/elixir/read_doc", only: :dev},
       {:dialyxir, "~> 0.5.1", only: :dev},
       {:excoveralls, "~> 0.8.0", only: :test},
+      {:mox, "~> 0.3.2", only: :test},
     ]
   end
 
