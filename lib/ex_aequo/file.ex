@@ -1,11 +1,8 @@
-defmodule ExAequo.CLTools do
+defmodule ExAequo.File do
 
   @moduledoc """
- `mix escript.install hex ex_doc ## ExAequo Command Line Tools
-
-  ### File Filter
+      ## All kind of File related stuff
   """
-
 
   @doc """
   expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`, then
@@ -18,6 +15,8 @@ defmodule ExAequo.CLTools do
   end
 
 
+  @doc """
+  """
   def files wc do
     with abs_path <- sys_interface().expand_path(wc) do
       abs_path
@@ -53,5 +52,4 @@ defmodule ExAequo.CLTools do
   defp today_tuple do
     with {date, _time} <- :calendar.local_time(), do: date
   end
-  
 end

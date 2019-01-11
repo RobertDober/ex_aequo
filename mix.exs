@@ -5,14 +5,14 @@ defmodule ExAequo.Mixfile do
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
   @url "https://github.com/robertdober/ex_aequo"
-  @version "0.1.5"
+  @version "0.2.0"
   def project do
     [
      aliases: [docs: &build_docs/1],
      app: :ex_aequo,
      deps: deps(),
      description: @description,
-     elixir: "~> 1.10",
+     elixir: "~> 1.12",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
@@ -46,11 +46,11 @@ defmodule ExAequo.Mixfile do
 
   defp deps do
     [
-      {:extractly, "~>0.1.4", only: :dev},
+      {:extractly, "~>0.3.0", only: :dev},
       # {:read_doc, git: "https://github.com/RobertDober/read_doc.git", tag: "0.1.1", only: :dev},
       # {:read_doc, path: "/home/robert/log/elixir/read_doc", only: :dev},
       {:dialyxir, "~> 1.0.0", only: :dev},
-      {:excoveralls, "~> 0.11.0", only: :test},
+      {:excoveralls, "~> 0.14.1", only: :test},
     ]
   end
 

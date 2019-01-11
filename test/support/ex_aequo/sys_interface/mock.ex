@@ -1,7 +1,6 @@
 defmodule ExAequo.SysInterface.Mock do
   @behaviour ExAequo.SysInterface.Behavior
 
-
   alias ExAequo.SysInterface.Mock.Expectations
 
   def start_link do
@@ -20,13 +19,18 @@ defmodule ExAequo.SysInterface.Mock do
     Agent.get(__MODULE__, &(&1.messages))
   end
 
-  def invocation_of fun, will_return do
-    Agent.update(__MODULE__, &Expectations.add_expectation(&1, fun, will_return))
+  def invocation_of(fun, args, return \\ nil)
+  def invocation_of(fun, args, _) when is_list(args) do
+    args1 = Keyword.get(args, :with, [])
+    return = Keyword.get(args, :returns, nil)
+    Agent.update(__MODULE__, &Expectations.add_expectation(&1, fun, args1, return))
+  end
+  def invocation_of(fun, args, return) do
+    Agent.update(__MODULE__, &Expectations.add_expectation(&1, fun, args, return))
   end
 
-
   def expand_path path do
-    Agent.get_and_update(__MODULE__, &Expectations.get_path(&1, path))
+    Agent.get_and_update(__MODULE__, &Expectations.check_invocation_of(&1, :expand_path, with: path))
   end
 
   def lstat path, options \\ [] do
