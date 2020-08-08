@@ -1,9 +1,7 @@
 defmodule ExAequo.CLTools do
 
-  @sys_interface Application.fetch_env!(:ex_aequo, :sys_interface)
-
   @moduledoc """
-  ## ExAequo Command Line Tools
+ `mix escript.install hex ex_doc ## ExAequo Command Line Tools
 
   ### File Filter
   """
@@ -21,7 +19,7 @@ defmodule ExAequo.CLTools do
 
 
   def files wc do
-    with abs_path <- @sys_interface.expand_path(wc) do
+    with abs_path <- sys_interface().expand_path(wc) do
       abs_path
       |> Path.wildcard()
     end
@@ -31,7 +29,7 @@ defmodule ExAequo.CLTools do
   expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`
   """
   def files_with_stat wc do
-    with abs_path <- @sys_interface.expand_path(wc) do
+    with abs_path <- sys_interface().expand_path(wc) do
       abs_path
       |> Path.wildcard()
       |> Stream.map(&({ &1, ok_lstat(&1) }))
@@ -46,6 +44,11 @@ defmodule ExAequo.CLTools do
   defp ok_lstat file do
     with {:ok, lstat} <- File.lstat(file), do: lstat
   end
+
+  defp sys_interface do
+    Application.fetch_env!(:ex_aequo, :sys_interface)
+  end
+
 
   defp today_tuple do
     with {date, _time} <- :calendar.local_time(), do: date
