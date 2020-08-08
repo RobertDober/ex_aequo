@@ -1,4 +1,4 @@
-defmodule ExAequo.SysInterface.Behaviour do
+defmodule ExAequo.SysInterface.Behavior do
   use ExAequo.Types
   
   @callback expand_path(Path.t()) :: binary()

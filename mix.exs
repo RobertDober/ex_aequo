@@ -1,32 +1,35 @@
 defmodule ExAequo.Mixfile do
   use Mix.Project
 
+  @description """
+  Some Tools Commonly Needed (commonly means once a year by me, but still)
+  """
+  @url "https://github.com/robertdober/ex_aequo"
+  @version "0.1.2"
   def project do
-    [app: :ex_aequo,
-     version: "0.1.0",
-     elixir: "~> 1.6",
+    [
+     aliases: [docs: &build_docs/1],
+     app: :ex_aequo,
+     deps: deps(),
+     description: @description,
+     elixir: "~> 1.10",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
-     description:   description(),
      package:       package(),
      test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
-     deps: deps()]
+     preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
+     version: @version,
+   ]
   end
 
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
   def application do
-    [extra_applications: [:logger]]
+    [applications: []]
   end
 
-  defp description do
-    """
-    ExAequo Elixir Tools
-    """
-  end
 
   defp package do
     [
@@ -43,17 +46,38 @@ defmodule ExAequo.Mixfile do
 
   defp deps do
     [
-      {:ex_doc, ">= 0.18.1", only: :dev},
-      {:read_doc, ">= 0.1.1", only: :dev},
+      {:extractly, "~>0.1.4", only: :dev},
       # {:read_doc, git: "https://github.com/RobertDober/read_doc.git", tag: "0.1.1", only: :dev},
       # {:read_doc, path: "/home/robert/log/elixir/read_doc", only: :dev},
-      {:dialyxir, "~> 0.5.1", only: :dev},
-      {:mox, "~> 0.3.2", only: :test},
-      {:excoveralls, "~> 0.8.0", only: :test},
-      {:mox, "~> 0.3.2", only: :test},
+      {:dialyxir, "~> 1.0.0", only: :dev},
+      {:excoveralls, "~> 0.11.0", only: :test},
     ]
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_),     do: ["lib"]
+
+  @prerequisites """
+  run `mix escript.install hex ex_doc` and adjust `PATH` accordingly
+  """
+  @modulename "ExAequo"
+  defp build_docs(_) do
+    Mix.Task.run("compile")
+    ex_doc = Path.join(Mix.path_for(:escripts), "ex_doc")
+    Mix.shell().info("Using escript: #{ex_doc} to build the docs")
+
+    unless File.exists?(ex_doc) do
+      raise "cannot build docs because escript for ex_doc is not installed, make sure to \n#{@prerequisites}"
+    end
+
+    args = [@modulename, @version, Mix.Project.compile_path()]
+    opts = ~w[--main #{@modulename} --source-ref v#{@version} --source-url #{@url}]
+
+    Mix.shell().info("Running: #{ex_doc} #{inspect(args ++ opts)}")
+    System.cmd(ex_doc, args ++ opts)
+    Mix.shell().info("Docs built successfully")
+  end
+
 end
+
+# SPDX-License-Identifier: Apache-2.0

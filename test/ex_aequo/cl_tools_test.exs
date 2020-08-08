@@ -1,18 +1,15 @@
 defmodule ExAequo.CLToolsTest do
   use ExUnit.Case, async: true
 
-  import Mox
-  setup :verify_on_exit!
 
+  # test "correct behavior of #files" do 
+  #   SysInterface.Mox
+  #   |> expect(:lstat, &local_lstat/1)
 
-  test "correct behavior of #files" do 
-    SysInterface.Mox
-    |> expect(:lstat, &local_lstat/1)
+  #   {status, _} = SysInterface.Mox.lstat("hello")
+  #   assert status == :ok
 
-    {status, _} = SysInterface.Mox.lstat("hello")
-    assert status == :ok
-
-  end
+  # end
 
 
   @local_files %{"hello" => {:ok,
