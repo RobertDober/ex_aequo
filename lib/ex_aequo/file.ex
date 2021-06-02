@@ -20,7 +20,7 @@ defmodule ExAequo.File do
   def files wc do
     with abs_path <- sys_interface().expand_path(wc) do
       abs_path
-      |> Path.wildcard()
+      |> sys_interface().wildcard()
     end
   end
 

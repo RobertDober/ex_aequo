@@ -1,16 +1,21 @@
 defmodule ExAequo.FileTest do
-  use ExUnit.Case, async: false
-  alias ExAequo.File
+  use Support.MyTest
+  alias ExAequo.File, as: F
 
+  @sys_interface Application.fetch_env!(:ex_aequo, :sys_interface)
+
+  import ExAequo.SysInterface.Mock.Expectations, only: [invocation_of: 2]
   test "correct behavior of #files" do
-    @sys_interface.invocation_of(:expand_path, with: [42], returns: ~W[alpha beta])
-    assert @sys_interface.expand_path(42) == ~W[alpha beta]
+    path = double("path")
+    expanded = invocation_of(:expand_path, with: [path], returns: double("expanded"))
+    elements = invocation_of(:wildcard, with: [expanded], returns: double("elements"))
+    assert F.files(path) == elements
 
   end
 
 
   @local_files %{"hello" => {:ok,
-    %::File.Stat{
+    %File.Stat{
       access: :read_write,
       atime: {{2018, 5, 26}, {12, 2, 56}},
       ctime: {{2018, 4, 18}, {14, 58, 36}},

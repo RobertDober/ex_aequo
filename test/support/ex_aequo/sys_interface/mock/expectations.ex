@@ -1,33 +1,32 @@
 defmodule ExAequo.SysInterface.Mock.Expectations do
+  alias Support.Dlist
 
-  defstruct expectations: []
-
-  def new, do: %__MODULE__{}
-
-  def add_expectation expectations, fun, args, return do
-    [{fun, args, return} | expectations]
+  def start_link do
+    Agent.start_link(fn -> Dlist.new end, name: __MODULE__)
   end
 
-  def check_invocation_of(expectations, fun, args \\ [])
-  def check_invocation_of(expectations, fun, with: args) do
-    case expectations do
-      [{^fun, ^args, result} | rest] -> {result, rest}
-      _ -> raise "Cannot match invocation of #{fun}, with: #{inspect args}, expectations are:\n\t#{inspect expectations}"
+  def clear do
+    Agent.update(__MODULE__, fn _ -> Dlist.new end)
+  end
+
+  def invocation_of(fun, spec \\ [])
+  def invocation_of(fun, spec) do
+    args1 = Keyword.get(spec, :with, [])
+    return = Keyword.get(spec, :returns, nil)
+    Agent.update(__MODULE__, &Dlist.push(&1, {fun, args1, return}))
+    return
+  end
+
+  def check_invocation_of(fun, with: args) do
+    Agent.get_and_update(__MODULE__, &check_invocation_of!(&1, fun, args))
+  end
+
+  defp check_invocation_of!(expectations, fun, args) do
+    {expectation, next_expectations} = Dlist.pop(expectations)
+    case expectation do
+      {^fun, ^args, result} -> {result, next_expectations}
+      _ -> raise "Cannot match invocation of #{fun}, with: #{inspect args}, expectation is: #{inspect expectation}"
     end
   end
-  def check_invocation_of(expectations, fun, _), do: check_invocation_of(expectations, fun, with: [])
 
-  def get_path exp, path do
-    case Map.fetch!(exp.results, :expand_path) |> List.pop_at(0) do
-      {nil, _} -> raise "Unexpected invocation of :expand_path"
-      {result, rest} -> {result, update(exp, :expand_path, [path], rest)}
-    end
-  end
-
-  defp update exp, invocation, args, rest_results do
-    %{exp |
-        messages: [{invocation, args} | exp.messages],
-        results: %{exp.results| invocation => [rest_results]}}
-  end
-
-end 
+end
