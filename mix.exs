@@ -1,6 +1,7 @@
 defmodule ExAequo.Mixfile do
   use Mix.Project
 
+  @modulename "ExAequo"
   @description """
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
@@ -47,10 +48,8 @@ defmodule ExAequo.Mixfile do
   defp deps do
     [
       {:extractly, "~>0.3.0", only: :dev},
-      # {:read_doc, git: "https://github.com/RobertDober/read_doc.git", tag: "0.1.1", only: :dev},
-      # {:read_doc, path: "/home/robert/log/elixir/read_doc", only: :dev},
-      {:dialyxir, "~> 1.0.0", only: :dev},
-      {:excoveralls, "~> 0.14.1", only: :test},
+      {:dialyxir, "~> 1.1.0", only: [:dev], runtime: false},
+      {:excoveralls, "~> 0.14.2", only: :test},
     ]
   end
 
@@ -60,7 +59,6 @@ defmodule ExAequo.Mixfile do
   @prerequisites """
   run `mix escript.install hex ex_doc` and adjust `PATH` accordingly
   """
-  @modulename "ExAequo"
   defp build_docs(_) do
     Mix.Task.run("compile")
     ex_doc = Path.join(Mix.path_for(:escripts), "ex_doc")
