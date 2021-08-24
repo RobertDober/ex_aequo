@@ -4,16 +4,30 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.22.2">
-    <meta name="project" content="ExAequo v0.1.5">
-    <title>API Reference — ExAequo v0.1.5</title>
-    <link rel="stylesheet" href="dist/elixir-d678dad126d82ddc061f.css" />
-    <script src="dist/sidebar_items-b548250644.js"></script>
+    <meta name="generator" content="ExDoc v0.25.1">
+    <meta name="project" content="ExAequo v0.2.0">
+
+    <title>API Reference — ExAequo v0.2.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+    <script src="dist/sidebar_items-cf43036caf.js"></script>
+
       <script src="docs_config.js"></script>
-    <script async src="dist/app-0103364119015b97e56c.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
   </head>
   <body data-type="extras">
-    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
 <div class="main">
 
 <button class="sidebar-button sidebar-toggle">
@@ -22,14 +36,14 @@
 
 <section class="sidebar">
   <form class="sidebar-search" action="search.html">
-    <button type="submit" class="search-button">
-      <span class="icon-search" aria-hidden="true"></span>
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
     </button>
-    <button type="button" tabindex="-1" class="search-close-button">
-      <span class="icon-cross" title="Cancel search"></span>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
     </button>
     <label class="search-label">
-      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
     </label>
   </form>
 
@@ -41,17 +55,20 @@
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
       <a href="ExAequo.html" class="sidebar-projectName">
-ExAequo      </a>
-      <h2 class="sidebar-projectVersion">
-        v0.1.5
-      </h2>
+ExAequo
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.2.0
+      </strong>
     </div>
+
   </div>
 
   <ul class="sidebar-listNav">
-    <li><a id="extras-list" href="#full-list">Pages</a></li>
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
 
-      <li><a id="modules-list" href="#full-list">Modules</a></li>
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
 
   </ul>
   <div class="gradient"></div>
@@ -63,8 +80,7 @@ ExAequo      </a>
     <div id="content" class="content-inner">
 
 <h1>
-  <small class="app-vsn">ExAequo v0.1.5</small>
-  API Reference
+  API Reference <small class="app-vsn">ExAequo v0.2.0</small>
 </h1>
 
   <section class="details-list">
@@ -77,57 +93,109 @@ ExAequo      </a>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="ExAequo.html">ExAequo</a>
-  </div>
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="ExAequo.CLTools.html">ExAequo.CLTools</a>
-  </div>
-    <div class="summary-synopsis"><p>`mix escript.install hex ex_doc ## ExAequo Command Line Tools
 
-### File Filter</p></div>
+  </div>
+
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="ExAequo.Enum.html">ExAequo.Enum</a>
+
   </div>
-    <div class="summary-synopsis"><p>  ## ExAequo.Enum offers some extension functions for Elixir's Enum module</p></div>
+
+    <div class="summary-synopsis"><h2 id="exaequo-enum-offers-some-extension-functions-for-elixir-s-enum-module" class="section-heading">
+  <a href="#exaequo-enum-offers-some-extension-functions-for-elixir-s-enum-module" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  ExAequo.Enum offers some extension functions for Elixir's Enum module
+</h2>
+<h3 id="grouped-accumulation" class="section-heading">
+  <a href="#grouped-accumulation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Grouped Accumulation
+</h3>
+<p>Groupes accumulated values of an Enum according to a function that
+indicates if two consequent items are of the same kind and if so
+how to accumulate their two values.</p></div>
+
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="ExAequo.Structures.List.html">ExAequo.Structures.List</a>
+    <a href="ExAequo.File.html">ExAequo.File</a>
+
   </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="c1">## All kind of File related stuff</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="ExAequo.KeywordParams.html">ExAequo.KeywordParams</a>
+
+  </div>
+
+    <div class="summary-synopsis"><h2 id="tools-to-facilitate-dispatching-on-keyword-parameters-used-in-contexts-like-the-following" class="section-heading">
+  <a href="#tools-to-facilitate-dispatching-on-keyword-parameters-used-in-contexts-like-the-following" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Tools to facilitate dispatching on keyword parameters, used in contexts like the following
+</h2>
+<pre><code class="makeup elixir"><span class="w">  </span><span class="na">@defaults</span><span class="w"> </span><span class="p" data-group-id="1486653752-1">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="1486653752-1">]</span><span class="w"> </span><span class="c1"># Keyword or Map</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">some_fun</span><span class="p" data-group-id="1486653752-2">(</span><span class="n">...</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="p" data-group-id="1486653752-3">[</span><span class="p" data-group-id="1486653752-3">]</span><span class="p" data-group-id="1486653752-2">)</span><span class="w"> </span><span class="c1"># options again can be a Keyword or Map</span><span class="w">
+    </span><span class="p" data-group-id="1486653752-4">{</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="1486653752-4">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tuple_from_params</span><span class="p" data-group-id="1486653752-5">(</span><span class="na">@defaults</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1486653752-6">[</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="1486653752-6">]</span><span class="p" data-group-id="1486653752-5">)</span></code></pre><h3 id="merging-defaults-and-actual-parameters" class="section-heading">
+  <a href="#merging-defaults-and-actual-parameters" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Merging defaults and actual parameters
+</h3>
+<p>Its most useful feature is that you will get a map whatever the mixtures of maps and keywords the
+input was</p></div>
+
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="ExAequo.SysInterface.Behavior.html">ExAequo.SysInterface.Behavior</a>
+
   </div>
+
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="ExAequo.SysInterface.Implementation.html">ExAequo.SysInterface.Implementation</a>
+
   </div>
+
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="ExAequo.Types.html">ExAequo.Types</a>
+
   </div>
+
 </div>
+
     </div>
   </section>
+
+
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
 
       <footer class="footer">
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.22.2),
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.25.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">
-            designed by
+            Designed by
             <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
           </span>
         </p>
         <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
           <button class="line footer-button display-shortcuts-help">
             Display keyboard shortcuts
           </button>
@@ -147,5 +215,7 @@ ExAequo      </a>
   </div>
 </section>
 </div>
+
+
   </body>
 </html>

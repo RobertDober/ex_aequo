@@ -15,6 +15,6 @@ being equal, I choose this one.
 
 <%= xtra.moduledoc "ExAequo.Enum" %>
 
-<%= xtra.moduledoc "ExAequo.KeywordParams %>
+<%= xtra.moduledoc "ExAequo.KeywordParams" %>
 
 SPDX-License-Identifier: Apache-2.0

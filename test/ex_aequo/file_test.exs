@@ -8,9 +8,12 @@ defmodule ExAequo.FileTest do
     expanded = invocation_of(:expand_path, with: [path], returns: double("expanded"))
     elements = invocation_of(:wildcard, with: [expanded], returns: double("elements"))
     assert F.files(path) == elements
-
   end
 
+  test "today" do
+    expanded = invocation_of(:expand_path, with: ["*"], returns: double("expanded"))
+    assert F.today("*") |> Enum.to_list |> Enum.empty?
+  end
 
   @local_files %{"hello" => {:ok,
     %File.Stat{
