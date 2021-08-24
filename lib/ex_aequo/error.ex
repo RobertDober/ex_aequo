@@ -9,3 +9,4 @@ defmodule ExAequo.Error do
   @spec exception( String.t ) :: Exception.t
   def exception(msg), do: %__MODULE__{message: msg}
 end
+#  SPDX-License-Identifier: Apache-2.0

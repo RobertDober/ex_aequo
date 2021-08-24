@@ -13,6 +13,8 @@ ExAequo Elixir Tools
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
 being equal, I choose this one.
 
-<%= xtra .moduledoc "ExAequo.Enum" %>
+<%= xtra.moduledoc "ExAequo.Enum" %>
+
+<%= xtra.moduledoc "ExAequo.KeywordParams %>
 
 SPDX-License-Identifier: Apache-2.0

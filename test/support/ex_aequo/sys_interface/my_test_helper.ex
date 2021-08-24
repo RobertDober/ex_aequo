@@ -1,4 +1,4 @@
-defmodule Support.MyTest do
+defmodule Support.MyTestHelper do
   defmacro __using__(_\\[]) do
     quote do
       use ExUnit.Case, async: false

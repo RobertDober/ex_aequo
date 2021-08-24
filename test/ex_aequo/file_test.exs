@@ -1,8 +1,6 @@
 defmodule ExAequo.FileTest do
-  use Support.MyTest
+  use Support.MyTestHelper
   alias ExAequo.File, as: F
-
-  @sys_interface Application.fetch_env!(:ex_aequo, :sys_interface)
 
   import ExAequo.SysInterface.Mock.Expectations, only: [invocation_of: 2]
   test "correct behavior of #files" do
