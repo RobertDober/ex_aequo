@@ -121,6 +121,29 @@ This is the 2 param form which is identical to an empty default map
     {2, 1}
 
 
-<!-- ERROR cannot load module `Elixir.ExAequo.Path' -->
+```elxir
+    iex(0)> base_name_without_ext("a/b/c.txt")
+    "c"
+
+    iex(1)> base_name_without_ext("a/b/c.txt.eex")
+    "c.txt"
+
+    iex(2)> base_name_without_ext("a/b/c")
+    "c"
+```
+```elxir
+    iex(3)> full_name_without_ext("a/b/c.txt")
+    "a/b/c"
+
+    iex(4)> full_name_without_ext("a/b/c.txt.eex")
+    "a/b/c.txt"
+
+    iex(5)> full_name_without_ext("a/b/c")
+    "a/b/c"
+
+    iex(6)> full_name_without_ext("/c")
+    "/c"
+```
+
 
 SPDX-License-Identifier: Apache-2.0

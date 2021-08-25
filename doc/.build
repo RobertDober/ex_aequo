@@ -2,6 +2,7 @@
 ExAequo.Enum.html
 ExAequo.File.html
 ExAequo.KeywordParams.html
+ExAequo.Path.html
 ExAequo.SysInterface.Behavior.html
 ExAequo.SysInterface.Implementation.html
 ExAequo.Types.html
@@ -13,7 +14,7 @@ dist/html/fonts/icomoon.eot
 dist/html/fonts/icomoon.svg
 dist/html/fonts/icomoon.ttf
 dist/html/fonts/icomoon.woff
-dist/search_items-b9b9c5009f.js
-dist/sidebar_items-c6b1680dd7.js
+dist/search_items-a0d6068231.js
+dist/sidebar_items-a4eee6fc42.js
 index.html
 search.html
