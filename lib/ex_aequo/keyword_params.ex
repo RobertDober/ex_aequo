@@ -49,23 +49,32 @@ defmodule ExAequo.KeywordParams do
 
   """
 
-  @doc false
+  @doc """
+  This is the 2 param form which is identical to an empty default map
+      iex(6)> map_from_params(%{a: 1, b: 2}, [:a])
+      %{a: 1}
+  """
+  def map_from_params(actual, keys), do: map_from_params(%{}, actual, keys)
   def map_from_params(default, actual, keys) do
     merged = merge_params(default, actual)
     keys
     |> Enum.reduce(%{}, fn key, values -> Map.put(values, key, Map.fetch!(merged, key)) end)
   end
 
-  @doc false
   def merge_params(actual), do: merge_params(%{}, actual)
 
-  @doc false
   def merge_params(default, actual)
   def merge_params(default, actual) when is_list(default), do: default |> Enum.into(%{}) |> merge_params(actual)
   def merge_params(default, actual) when is_list(actual), do: merge_params(default, actual |> Enum.into(%{}))
   def merge_params(default, actual), do: Map.merge(default, actual)
 
-  @doc false
+  @doc """
+  This is the 2 param form which is identical to an empty default map
+      iex(7)> tuple_from_params(%{a: 1, b: 2}, [:b, :a])
+      {2, 1}
+  """
+  def tuple_from_params(actual, keys), do: tuple_from_params([], actual, keys)
+
   def tuple_from_params(default, actual, keys) do
     merged = merge_params(default, actual)
     keys
