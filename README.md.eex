@@ -17,4 +17,6 @@ being equal, I choose this one.
 
 <%= xtra.moduledoc "ExAequo.KeywordParams" %>
 
+<%= xtra.functiondoc :all, module: "ExAequo.KeywordParams" %>
+
 SPDX-License-Identifier: Apache-2.0

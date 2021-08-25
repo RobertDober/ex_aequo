@@ -33,6 +33,7 @@ cancels out.
 An optional, `reverse: true` keyword option can be provided to reverse
 the final result for convenience.
 
+```elixir
       iex(0)> add_same = fn {x, a}, {y, b} ->
       ...(0)>               cond do
       ...(0)>                 x == y -> {:cont, {x, a + b}}
@@ -40,6 +41,8 @@ the final result for convenience.
       ...(0)> E.grouped_reduce(
       ...(0)>   [{:a, 1}, {:a, 2}, {:b, 3}, {:b, 4}], add_same)
       [{:b, 7}, {:a, 3}]
+```
+
 
 The `grouped_inject` function behaves almost identically to `grouped_reduce`,
 however an initial value is provided.
@@ -100,6 +103,16 @@ Alternatively on can extract a map
     iex(5)> map_from_params([], [hello: "world"], [:hello])
     %{hello: "world"}
 
+
+
+This is the 2 param form which is identical to an empty default map
+
+    iex(6)> map_from_params(%{a: 1, b: 2}, [:a])
+    %{a: 1}
+This is the 2 param form which is identical to an empty default map
+
+    iex(7)> tuple_from_params(%{a: 1, b: 2}, [:b, :a])
+    {2, 1}
 
 
 SPDX-License-Identifier: Apache-2.0

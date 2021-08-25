@@ -6,7 +6,7 @@ defmodule ExAequo.Mixfile do
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
   @url "https://github.com/robertdober/ex_aequo"
-  @version "0.2.0"
+  @version "0.2.1"
   def project do
     [
      aliases: [docs: &build_docs/1],
@@ -19,10 +19,7 @@ defmodule ExAequo.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      package:       package(),
      test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: [coveralls: :test,
-      "coveralls.detail": :test,
-      "coveralls.post": :test,
-      "coveralls.html": :test],
+     preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
      version: @version,
    ]
   end

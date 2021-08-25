@@ -14,6 +14,7 @@ defmodule ExAequo.KeywordParams do
   Its most useful feature is that you will get a map whatever the mixtures of maps and keywords the
   input was
 
+  ```elixir
       iex(0)> merge_params([])
       %{}
 
@@ -22,6 +23,7 @@ defmodule ExAequo.KeywordParams do
 
       iex(2)> merge_params(%{a: 1}, [a: 2, b: 2])
       %{a: 2, b: 2}
+  ```
 
   #### Strict merging
 
@@ -51,18 +53,23 @@ defmodule ExAequo.KeywordParams do
 
   @doc """
   This is the 2 param form which is identical to an empty default map
+
       iex(6)> map_from_params(%{a: 1, b: 2}, [:a])
       %{a: 1}
   """
+  @spec map_from_params(params_t(), list()) :: map()
   def map_from_params(actual, keys), do: map_from_params(%{}, actual, keys)
+  @spec map_from_params(params_t(), params_t(), list()) :: map()
   def map_from_params(default, actual, keys) do
     merged = merge_params(default, actual)
     keys
     |> Enum.reduce(%{}, fn key, values -> Map.put(values, key, Map.fetch!(merged, key)) end)
   end
 
+  @spec merge_params(params_t()) :: map()
   def merge_params(actual), do: merge_params(%{}, actual)
 
+  @spec merge_params(params_t(), params_t()) :: map()
   def merge_params(default, actual)
   def merge_params(default, actual) when is_list(default), do: default |> Enum.into(%{}) |> merge_params(actual)
   def merge_params(default, actual) when is_list(actual), do: merge_params(default, actual |> Enum.into(%{}))
@@ -70,11 +77,14 @@ defmodule ExAequo.KeywordParams do
 
   @doc """
   This is the 2 param form which is identical to an empty default map
+
       iex(7)> tuple_from_params(%{a: 1, b: 2}, [:b, :a])
       {2, 1}
   """
+  @spec tuple_from_params(params_t(), list()) :: tuple()
   def tuple_from_params(actual, keys), do: tuple_from_params([], actual, keys)
 
+  @spec tuple_from_params(params_t(), params_t(), list()) :: tuple()
   def tuple_from_params(default, actual, keys) do
     merged = merge_params(default, actual)
     keys
