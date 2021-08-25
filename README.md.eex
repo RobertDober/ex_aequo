@@ -8,7 +8,14 @@
 [![Hex.pm](https://img.shields.io/hexpm/dw/ex_aequo.svg)](https://hex.pm/packages/ex_aequo)
 [![Hex.pm](https://img.shields.io/hexpm/dt/ex_aequo.svg)](https://hex.pm/packages/ex_aequo)
 
-ExAequo Elixir Tools
+# ExAequo Elixir Tools
+
+### Installation:
+
+```elxir
+  { :ex_aequo, ">= <%= ExAequo.version %>" }
+
+```
 
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
 being equal, I choose this one.
@@ -18,5 +25,7 @@ being equal, I choose this one.
 <%= xtra.moduledoc "ExAequo.KeywordParams" %>
 
 <%= xtra.functiondoc :all, module: "ExAequo.KeywordParams" %>
+
+<%= xtra.functiondoc :all, module: "ExAequo.Path" %>
 
 SPDX-License-Identifier: Apache-2.0

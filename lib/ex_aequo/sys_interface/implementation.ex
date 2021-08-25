@@ -18,3 +18,4 @@ defmodule ExAequo.SysInterface.Implementation do
     Path.wildcard(path, options)
   end
 end
+#  SPDX-License-Identifier: Apache-2.0
