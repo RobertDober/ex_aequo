@@ -17,7 +17,7 @@ and any changes you make in this file will most likely be lost
 ### Installation:
 
 ```elxir
-  { :ex_aequo, ">= 0.2.2" }
+  { :ex_aequo, ">= 0.3.0" }
 
 ```
 
@@ -121,29 +121,25 @@ This is the 2 param form which is identical to an empty default map
     {2, 1}
 
 
-```elxir
-    iex(0)> base_name_without_ext("a/b/c.txt")
+    iex(0)> basename_without_ext("a/b/c.txt")
     "c"
 
-    iex(1)> base_name_without_ext("a/b/c.txt.eex")
+    iex(1)> basename_without_ext("a/b/c.txt.eex")
     "c.txt"
 
-    iex(2)> base_name_without_ext("a/b/c")
+    iex(2)> basename_without_ext("a/b/c")
     "c"
-```
-```elxir
-    iex(3)> full_name_without_ext("a/b/c.txt")
+    iex(3)> fullname_without_ext("a/b/c.txt")
     "a/b/c"
 
-    iex(4)> full_name_without_ext("a/b/c.txt.eex")
+    iex(4)> fullname_without_ext("a/b/c.txt.eex")
     "a/b/c.txt"
 
-    iex(5)> full_name_without_ext("a/b/c")
+    iex(5)> fullname_without_ext("a/b/c")
     "a/b/c"
 
-    iex(6)> full_name_without_ext("/c")
+    iex(6)> fullname_without_ext("/c")
     "/c"
-```
 
 
 SPDX-License-Identifier: Apache-2.0
