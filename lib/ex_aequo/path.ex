@@ -6,39 +6,35 @@ defmodule ExAequo.Path do
   """
 
   @doc """
-  ```elxir
-      iex(0)> base_name_without_ext("a/b/c.txt")
+      iex(0)> basename_without_ext("a/b/c.txt")
       "c"
 
-      iex(1)> base_name_without_ext("a/b/c.txt.eex")
+      iex(1)> basename_without_ext("a/b/c.txt.eex")
       "c.txt"
 
-      iex(2)> base_name_without_ext("a/b/c")
+      iex(2)> basename_without_ext("a/b/c")
       "c"
-  ```
   """
-  @spec base_name_without_ext(String.t) :: String.t
-  def base_name_without_ext(filename) do
+  @spec basename_without_ext(String.t) :: String.t
+  def basename_without_ext(filename) do
     ext = Path.extname(filename)
     filename |> Path.basename(ext)
   end
   @doc """
-  ```elxir
-      iex(3)> full_name_without_ext("a/b/c.txt")
+      iex(3)> fullname_without_ext("a/b/c.txt")
       "a/b/c"
 
-      iex(4)> full_name_without_ext("a/b/c.txt.eex")
+      iex(4)> fullname_without_ext("a/b/c.txt.eex")
       "a/b/c.txt"
 
-      iex(5)> full_name_without_ext("a/b/c")
+      iex(5)> fullname_without_ext("a/b/c")
       "a/b/c"
 
-      iex(6)> full_name_without_ext("/c")
+      iex(6)> fullname_without_ext("/c")
       "/c"
-  ```
   """
-  @spec full_name_without_ext(String.t) :: String.t
-  def full_name_without_ext(filename) do
+  @spec fullname_without_ext(String.t) :: String.t
+  def fullname_without_ext(filename) do
     ext = Path.extname(filename)
     rgx = Regex.compile!( Regex.escape(ext) <> "\\z" )
     Regex.replace(rgx, filename, "")
