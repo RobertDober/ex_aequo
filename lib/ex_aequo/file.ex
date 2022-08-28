@@ -2,8 +2,29 @@ defmodule ExAequo.File do
   use ExAequo.Types
 
   @moduledoc """
-      ## All kind of File related stuff
+  ## ExAequo.File
+
   """
+
+  @doc """
+
+  read a file into lines
+
+      iex(0)> readlines(Path.join(~W[test fixtures a_simple_file.txt]))
+      ["Line 1", "Line two", " Una terza linea"]
+  """
+  def readlines(segments)
+  def readlines(segments) when is_binary(segments) do
+    readlines([segments])
+  end
+  def readlines(segments) do
+    segments
+    |> Path.join
+    |> File.stream!
+    |> Enum.map(&String.trim_trailing(&1, "\n"))
+  end
+
+
 
   @doc """
   expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`, then

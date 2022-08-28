@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.25.1">
-    <meta name="project" content="ExAequo v0.3.0">
+    <meta name="generator" content="ExDoc v0.28.5">
+    <meta name="project" content="ExAequo v0.4.0">
 
-    <title>ExAequo.Enum — ExAequo v0.3.0</title>
-    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+    <title>ExAequo.Enum — ExAequo v0.4.0</title>
+    <link rel="stylesheet" href="dist/elixir-64c5e2b63575bddb1c5b.css" />
 
-    <script src="dist/sidebar_items-945492f13f.js"></script>
+    <script src="dist/sidebar_items-2628b8a54d.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+    <script async src="dist/app-b5f3440501744dc8be3d.js"></script>
 
 
   </head>
@@ -22,27 +22,34 @@
     <script>
 
       try {
-        if (localStorage.getItem('night-mode') === 'true') {
-          document.body.classList.add('night-mode');
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
         }
       } catch (error) { }
     </script>
 
 <div class="main">
 
-<button class="sidebar-button sidebar-toggle">
-  <span class="icon-menu" title="Collapse/expand sidebar"></span>
-</button>
 
 <section class="sidebar">
+  <button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+    <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+  </button>
+
   <form class="sidebar-search" action="search.html">
     <button type="submit" class="search-button" aria-label="Submit Search">
-      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
     </button>
     <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
-      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
     </button>
     <label class="search-label">
+      <p class="sr-only">Search</p>
       <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
     </label>
   </form>
@@ -53,50 +60,62 @@
   </div>
 
   <div class="sidebar-header">
+
     <div class="sidebar-projectDetails">
-      <a href="ExAequo.html" class="sidebar-projectName">
+      <a href="ExAequo.html" class="sidebar-projectName" translate="no">
 ExAequo
       </a>
-      <strong class="sidebar-projectVersion">
-        v0.3.0
+      <strong class="sidebar-projectVersion" translate="no">
+        v0.4.0
       </strong>
     </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
 
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
   </div>
 
-  <ul class="sidebar-listNav">
-    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
-
-      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
-
-
-  </ul>
   <div class="gradient"></div>
   <ul id="full-list" class="sidebar-fullList"></ul>
 </section>
 
 <section class="content">
+  <output role="status" id="toast"></output>
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-      <h1>
-ExAequo.Enum <small class="app-vsn">(ExAequo v0.3.0)</small>
-
-          <a href="https://github.com/robertdober/ex_aequo/blob/v0.3.0/lib/ex_aequo/enum.ex#L1" title="View Source" class="view-source" rel="help">
-            <span class="icon-code" aria-hidden="true"></span>
-            <span class="sr-only">View Source</span>
-          </a>
-
-      </h1>
+<h1>
+<button class="settings display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
 
 
-        <section id="moduledoc">
+    <a href="https://github.com/robertdober/ex_aequo/blob/v0.4.0/lib/ex_aequo/enum.ex#L1" title="View Source" class="view-source" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">ExAequo.Enum</span> 
+  <small class="app-vsn" translate="no">(ExAequo v0.4.0)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
 <h2 id="module-exaequo-enum-offers-some-extension-functions-for-elixir-s-enum-module" class="section-heading">
-  <a href="#module-exaequo-enum-offers-some-extension-functions-for-elixir-s-enum-module" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="#module-exaequo-enum-offers-some-extension-functions-for-elixir-s-enum-module" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">exaequo-enum-offers-some-extension-functions-for-elixir-s-enum-module</p>
+  </a>
   ExAequo.Enum offers some extension functions for Elixir's Enum module
 </h2>
 <h3 id="module-grouped-accumulation" class="section-heading">
-  <a href="#module-grouped-accumulation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="#module-grouped-accumulation" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">grouped-accumulation</p>
+  </a>
   Grouped Accumulation
 </h3>
 <p>Groupes accumulated values of an Enum according to a function that
@@ -105,72 +124,73 @@ how to accumulate their two values.</p><p>The <code class="inline">grouped_reduc
 during traversal of lists quite often reversing the result of the 
 classical &quot;take first and push a function of it to the result&quot; pattern
 cancels out.</p><p>An optional, <code class="inline">reverse: true</code> keyword option can be provided to reverse
-the final result for convenience.</p><pre><code class="makeup elixir"><span class="w">  </span><span class="gp unselectable">iex(0)&gt; </span><span class="n">add_same</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="0192243436-1">fn</span><span class="w"> </span><span class="p" data-group-id="0192243436-2">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p" data-group-id="0192243436-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0192243436-3">{</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="0192243436-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">              </span><span class="k">cond</span><span class="w"> </span><span class="k" data-group-id="0192243436-4">do</span><span class="w">
-  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="0192243436-5">{</span><span class="ss">:cont</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0192243436-6">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="0192243436-6">}</span><span class="p" data-group-id="0192243436-5">}</span><span class="w">
-  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">                </span><span class="no">true</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="0192243436-7">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="0192243436-7">}</span><span class="w"> </span><span class="k" data-group-id="0192243436-4">end</span><span class="w"> </span><span class="k" data-group-id="0192243436-1">end</span><span class="w">
-  </span><span class="gp unselectable">...(0)&gt; </span><span class="nc">E</span><span class="o">.</span><span class="n">grouped_reduce</span><span class="p" data-group-id="0192243436-8">(</span><span class="w">
-  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">  </span><span class="p" data-group-id="0192243436-9">[</span><span class="p" data-group-id="0192243436-10">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0192243436-10">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0192243436-11">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="0192243436-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0192243436-12">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="0192243436-12">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0192243436-13">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="0192243436-13">}</span><span class="p" data-group-id="0192243436-9">]</span><span class="p">,</span><span class="w"> </span><span class="n">add_same</span><span class="p" data-group-id="0192243436-8">)</span><span class="w">
-  </span><span class="p" data-group-id="0192243436-14">[</span><span class="p" data-group-id="0192243436-15">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p" data-group-id="0192243436-15">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0192243436-16">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="0192243436-16">}</span><span class="p" data-group-id="0192243436-14">]</span></code></pre><p>The <code class="inline">grouped_inject</code> function behaves almost identically to <code class="inline">grouped_reduce</code>,
-however an initial value is provided.</p><pre><code class="makeup elixir"><span class="w">  </span><span class="gp unselectable">iex(1)&gt; </span><span class="n">sub_same</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="5444580595-1">fn</span><span class="w"> </span><span class="p" data-group-id="5444580595-2">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p" data-group-id="5444580595-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5444580595-3">{</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="5444580595-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> 
-  </span><span class="n">...</span><span class="p" data-group-id="5444580595-4">(</span><span class="mi">1</span><span class="p" data-group-id="5444580595-4">)</span><span class="o">&gt;</span><span class="w">               </span><span class="k">cond</span><span class="w"> </span><span class="k" data-group-id="5444580595-5">do</span><span class="w">
-  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="5444580595-6">{</span><span class="ss">:cont</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5444580595-7">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="5444580595-7">}</span><span class="p" data-group-id="5444580595-6">}</span><span class="w">
-  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">                </span><span class="no">true</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="5444580595-8">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="5444580595-8">}</span><span class="w">
-  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">              </span><span class="k" data-group-id="5444580595-5">end</span><span class="w">
-  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">           </span><span class="k" data-group-id="5444580595-1">end</span><span class="w">
-  </span><span class="gp unselectable">...(1)&gt; </span><span class="nc">E</span><span class="o">.</span><span class="n">grouped_inject</span><span class="p" data-group-id="5444580595-9">(</span><span class="w">
-  </span><span class="gp unselectable">...(1)&gt; </span><span class="p" data-group-id="5444580595-10">[</span><span class="p" data-group-id="5444580595-11">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5444580595-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5444580595-12">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5444580595-12">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5444580595-13">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5444580595-13">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5444580595-14">{</span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5444580595-14">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5444580595-15">{</span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5444580595-15">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5444580595-16">{</span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5444580595-16">}</span><span class="p" data-group-id="5444580595-10">]</span><span class="p">,</span><span class="w">
-  </span><span class="gp unselectable">...(1)&gt; </span><span class="w"> </span><span class="p" data-group-id="5444580595-17">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p" data-group-id="5444580595-17">}</span><span class="p">,</span><span class="w"> </span><span class="n">sub_same</span><span class="p">,</span><span class="w"> </span><span class="ss">reverse</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="5444580595-9">)</span><span class="w">
-  </span><span class="p" data-group-id="5444580595-18">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="5444580595-18">]</span></code></pre>
-        </section>
+the final result for convenience.</p><pre><code class="makeup elixir" translate="no"><span class="w">  </span><span class="gp unselectable">iex(0)&gt; </span><span class="n">add_same</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="7457085375-1">fn</span><span class="w"> </span><span class="p" data-group-id="7457085375-2">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p" data-group-id="7457085375-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7457085375-3">{</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="7457085375-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">              </span><span class="k">cond</span><span class="w"> </span><span class="k" data-group-id="7457085375-4">do</span><span class="w">
+  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="7457085375-5">{</span><span class="ss">:cont</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7457085375-6">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="7457085375-6">}</span><span class="p" data-group-id="7457085375-5">}</span><span class="w">
+  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">                </span><span class="no">true</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="7457085375-7">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="7457085375-7">}</span><span class="w"> </span><span class="k" data-group-id="7457085375-4">end</span><span class="w"> </span><span class="k" data-group-id="7457085375-1">end</span><span class="w">
+  </span><span class="gp unselectable">...(0)&gt; </span><span class="nc">E</span><span class="o">.</span><span class="n">grouped_reduce</span><span class="p" data-group-id="7457085375-8">(</span><span class="w">
+  </span><span class="gp unselectable">...(0)&gt; </span><span class="w">  </span><span class="p" data-group-id="7457085375-9">[</span><span class="p" data-group-id="7457085375-10">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7457085375-10">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7457085375-11">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7457085375-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7457085375-12">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7457085375-12">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7457085375-13">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="7457085375-13">}</span><span class="p" data-group-id="7457085375-9">]</span><span class="p">,</span><span class="w"> </span><span class="n">add_same</span><span class="p" data-group-id="7457085375-8">)</span><span class="w">
+  </span><span class="p" data-group-id="7457085375-14">[</span><span class="p" data-group-id="7457085375-15">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p" data-group-id="7457085375-15">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7457085375-16">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7457085375-16">}</span><span class="p" data-group-id="7457085375-14">]</span></code></pre><p>The <code class="inline">grouped_inject</code> function behaves almost identically to <code class="inline">grouped_reduce</code>,
+however an initial value is provided.</p><pre><code class="makeup elixir" translate="no"><span class="w">  </span><span class="gp unselectable">iex(1)&gt; </span><span class="n">sub_same</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="4782014443-1">fn</span><span class="w"> </span><span class="p" data-group-id="4782014443-2">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p" data-group-id="4782014443-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4782014443-3">{</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="4782014443-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> 
+  </span><span class="n">...</span><span class="p" data-group-id="4782014443-4">(</span><span class="mi">1</span><span class="p" data-group-id="4782014443-4">)</span><span class="o">&gt;</span><span class="w">               </span><span class="k">cond</span><span class="w"> </span><span class="k" data-group-id="4782014443-5">do</span><span class="w">
+  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="4782014443-6">{</span><span class="ss">:cont</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4782014443-7">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="4782014443-7">}</span><span class="p" data-group-id="4782014443-6">}</span><span class="w">
+  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">                </span><span class="no">true</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="4782014443-8">{</span><span class="ss">:stop</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="4782014443-8">}</span><span class="w">
+  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">              </span><span class="k" data-group-id="4782014443-5">end</span><span class="w">
+  </span><span class="gp unselectable">...(1)&gt; </span><span class="w">           </span><span class="k" data-group-id="4782014443-1">end</span><span class="w">
+  </span><span class="gp unselectable">...(1)&gt; </span><span class="nc">E</span><span class="o">.</span><span class="n">grouped_inject</span><span class="p" data-group-id="4782014443-9">(</span><span class="w">
+  </span><span class="gp unselectable">...(1)&gt; </span><span class="p" data-group-id="4782014443-10">[</span><span class="p" data-group-id="4782014443-11">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4782014443-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4782014443-12">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4782014443-12">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4782014443-13">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4782014443-13">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4782014443-14">{</span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4782014443-14">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4782014443-15">{</span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4782014443-15">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4782014443-16">{</span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4782014443-16">}</span><span class="p" data-group-id="4782014443-10">]</span><span class="p">,</span><span class="w">
+  </span><span class="gp unselectable">...(1)&gt; </span><span class="w"> </span><span class="p" data-group-id="4782014443-17">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p" data-group-id="4782014443-17">}</span><span class="p">,</span><span class="w"> </span><span class="n">sub_same</span><span class="p">,</span><span class="w"> </span><span class="ss">reverse</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="4782014443-9">)</span><span class="w">
+  </span><span class="p" data-group-id="4782014443-18">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="4782014443-18">]</span></code></pre>
+  </section>
 
 
-        <section id="summary" class="details-list">
-          <h1 class="section-heading">
-            <a class="hover-link" href="#summary">
-              <span class="icon-link" aria-hidden="true"></span>
-              <span class="sr-only">Link to this section</span>
-            </a>
-            Summary
-          </h1>
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
 
   <div class="summary-types summary">
     <h2>
       <a href="#types">Types</a>
     </h2>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:grouped_accumulator/2">grouped_accumulator(ele_type, result_type)</a>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#t:grouped_accumulator/2" translate="no">grouped_accumulator(ele_type, result_type)</a>
+
+        </div>
+
+      </div>
 
   </div>
 
-</div>
-
-  </div>
-
-        </section>
+  </section>
 
 
-        <section id="types" class="details-list">
-          <h1 class="section-heading">
-            <a class="hover-link" href="#types">
-              <span class="icon-link" aria-hidden="true"></span>
-              <span class="sr-only">Link to this section</span>
-            </a>
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
 Types
-          </h1>
-          <div class="types-list">
+    </h1>
+    <div class="types-list">
 <section class="detail" id="t:grouped_accumulator/2">
 
   <div class="detail-header">
     <a href="#t:grouped_accumulator/2" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
+      <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this type</span>
     </a>
-    <h1 class="signature">grouped_accumulator(ele_type, result_type)</h1>
+    <h1 class="signature" translate="no">grouped_accumulator(ele_type, result_type)</h1>
 
-      <a href="https://github.com/robertdober/ex_aequo/blob/v0.3.0/lib/ex_aequo/enum.ex#L45" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
+      <a href="https://github.com/robertdober/ex_aequo/blob/v0.4.0/lib/ex_aequo/enum.ex#L45" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
 
@@ -179,10 +199,9 @@ Types
 
   <section class="docstring">
 
-      <h2>Specs</h2>
       <div class="specs">
 
-          <pre>grouped_accumulator(ele_type, result_type) ::
+          <pre translate="no"><span class="attribute">@type</span> grouped_accumulator(ele_type, result_type) ::
   (ele_type, ele_type -&gt; {:cont | :stop, result_type})</pre>
 
       </div>
@@ -191,38 +210,17 @@ Types
   </section>
 </section>
 
-          </div>
-        </section>
+    </div>
+  </section>
 
       <footer class="footer">
-        <p>
-          <span class="line">
-            Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.25.1) for the
-            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
-          </span>
-          <span class="line">
-            Designed by
-            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
-          </span>
-        </p>
-        <p>
 
-            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+        <p>
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.28.5) for the
 
-          <button class="line footer-button display-shortcuts-help">
-            Display keyboard shortcuts
-          </button>
-          <button class="line footer-button night-mode-toggle">
-            Toggle night mode
-          </button>
-          <button class="line footer-button display-quick-switch">
-            Go to a HexDocs package
-          </button>
-          <button class="line footer-button tooltips-toggle">
-            <span class="tooltips-option-disable">Disable tooltips</span>
-            <span class="tooltips-option-enable">Enable tooltips</span>
-          </button>
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
         </p>
       </footer>
     </div>

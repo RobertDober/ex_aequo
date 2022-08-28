@@ -2,6 +2,8 @@ defmodule ExAequo.FileTest do
   use Support.MyTestHelper
   alias ExAequo.File, as: F
 
+  doctest ExAequo.File, import: true
+
   import ExAequo.SysInterface.Mock.Expectations, only: [invocation_of: 2]
   test "correct behavior of #files" do
     path = double("path")

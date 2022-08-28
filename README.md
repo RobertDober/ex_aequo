@@ -17,12 +17,29 @@ and any changes you make in this file will most likely be lost
 ### Installation:
 
 ```elxir
-  { :ex_aequo, ">= 0.3.0" }
+  { :ex_aequo, ">= 0.4.0" }
 
 ```
 
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
 being equal, I choose this one.
+
+## ExAequo.File
+
+
+
+
+expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`
+
+
+read a file into lines
+
+    iex(0)> readlines(Path.join(~W[test fixtures a_simple_file.txt]))
+    ["Line 1", "Line two", " Una terza linea"]
+
+expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`, then
+filters only the files from today
+
 
 ## ExAequo.Enum offers some extension functions for Elixir's Enum module
 
@@ -115,6 +132,7 @@ This is the 2 param form which is identical to an empty default map
 
     iex(6)> map_from_params(%{a: 1, b: 2}, [:a])
     %{a: 1}
+
 This is the 2 param form which is identical to an empty default map
 
     iex(7)> tuple_from_params(%{a: 1, b: 2}, [:b, :a])
@@ -129,6 +147,7 @@ This is the 2 param form which is identical to an empty default map
 
     iex(2)> basename_without_ext("a/b/c")
     "c"
+
     iex(3)> fullname_without_ext("a/b/c.txt")
     "a/b/c"
 

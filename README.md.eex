@@ -20,6 +20,10 @@
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
 being equal, I choose this one.
 
+<%= xtra.moduledoc "ExAequo.File" %>
+
+<%= xtra.functiondoc :all, module: "ExAequo.File" %>
+
 <%= xtra.moduledoc "ExAequo.Enum" %>
 
 <%= xtra.moduledoc "ExAequo.KeywordParams" %>
