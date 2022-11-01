@@ -7,7 +7,7 @@ defmodule ExAequo.Mixfile do
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
   @url "https://github.com/robertdober/ex_aequo"
-  @version "0.5.0"
+  @version "0.5.1"
   def project do
     [
      aliases: [docs: &build_docs/1],

@@ -17,7 +17,7 @@ and any changes you make in this file will most likely be lost
 ### Installation:
 
 ```elxir
-  { :ex_aequo, ">= 0.5.0" }
+  { :ex_aequo, ">= 0.5.1" }
 ```
 
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
@@ -96,7 +96,7 @@ however an initial value is provided.
     IO.puts(ExAequo.Color.rgb(250, 148, 13) <> "Brownish Orange" <> ExAequo.Color.reset)
   ```
 
-  ### `rgb`
+### `rgb`
 
   The generated escape codes would be:
 
@@ -110,7 +110,7 @@ however an initial value is provided.
     "\e[0m"
 ```
 
-  ### `format`
+### `format`
 
   But like `IO.ANSI` a convenience function called `format` is available
 
@@ -127,7 +127,7 @@ however an initial value is provided.
     "HelloWorld"
 ```
 
-  #### RGB
+#### RGB
 
   In order to get colors into the mix we can use, atoms (for named colors or instructions like reset)
   or triples for RGB colors
@@ -137,7 +137,7 @@ however an initial value is provided.
     ["\e[38;2;100;20;150m", "Deep Purple (pun intended)", "\e[0m"]
 ```
 
-  #### 8 Color Space
+#### 8 Color Space
 
   And here are some nice names, which shall work on **all** terminals
 
@@ -155,7 +155,7 @@ however an initial value is provided.
     "\e[38;2;240;255;255mThe sky?\e[0m"
 ```
 
-  #### 256 Colors
+#### 256 Colors
 
 ```elixir
     iex(8)> format([:color242, :color142, :color42])
@@ -163,6 +163,20 @@ however an initial value is provided.
 ```
 
 
+## Escript `ls_colors`
+
+
+Test some colors
+
+```sh
+    ls_colors :red Red :reset 100,20,150 Deep Purple
+```
+
+Show some colors
+
+```sh
+    ls_colors -l|--list red_range green_range blue_range
+```
 
 
 ## Tools to facilitate dispatching on keyword parameters, used in contexts like the following

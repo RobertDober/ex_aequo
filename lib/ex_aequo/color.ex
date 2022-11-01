@@ -506,6 +506,7 @@ defmodule ExAequo.Color do
     navy: {0, 0, 128},
     navy_blue: {0, 0, 95},
     olive: {128, 128, 0},
+    orange: {255, 128, 0},
     orange1: {255, 175, 0},
     orange3: {215, 135, 0},
     orange4: {95, 95, 0},
@@ -593,6 +594,7 @@ defmodule ExAequo.Color do
   defp _transform(value)
   defp _transform(value) when is_number(value), do: "\e[#{value}m"
   defp _transform(value) when is_binary(value), do: _string_to_color(value)
+  defp _transform(value) when is_tuple(value), do: rgb(value)
 end
 
 # SPDX-License-Identifier: Apache-2.0

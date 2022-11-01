@@ -46,9 +46,6 @@ defmodule ExAequo.Color.Escript do
     apply(Range, :new, args)
   end
 
-  defp puts(args)
-  defp puts(args) when is_binary(args), do: puts([args])
-
   defp puts(args) do
     args
     |> format(reset: true)
