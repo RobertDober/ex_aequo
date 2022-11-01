@@ -15,6 +15,7 @@ defmodule ExAequo.Mixfile do
      deps: deps(),
      description: @description,
      elixir: "~> 1.14",
+      escript: escript_config(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
@@ -32,6 +33,22 @@ defmodule ExAequo.Mixfile do
     [applications: []]
   end
 
+  defp deps do
+    [
+      {:extractly, "~>0.5.3", only: [:dev]},
+      {:excoveralls, "~> 0.15.0", only: [:test]},
+    ]
+  end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
+
+  defp escript_config do
+    [
+      main_module: ExAequo.Color.Escript,
+      name: "ls_colors"
+    ]
+  end
 
   defp package do
     [
@@ -45,16 +62,6 @@ defmodule ExAequo.Mixfile do
                    }
     ]
   end
-
-  defp deps do
-    [
-      {:extractly, "~>0.5.3", only: [:dev]},
-      {:excoveralls, "~> 0.15.0", only: [:test]},
-    ]
-  end
-
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
 
   @prerequisites """
   run `mix escript.install hex ex_doc` and adjust `PATH` accordingly

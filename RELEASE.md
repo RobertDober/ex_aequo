@@ -1,3 +1,7 @@
+# v0.5.1 2022-11-01
+
+- Add an escript to show colors `ls_colors`
+
 # v0.5.0 2022-11-01
 
 - Color Tools `ExAequo.Color`

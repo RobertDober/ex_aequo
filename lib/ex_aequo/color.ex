@@ -11,7 +11,7 @@ defmodule ExAequo.Color do
       IO.puts(ExAequo.Color.rgb(250, 148, 13) <> "Brownish Orange" <> ExAequo.Color.reset)
     ```
 
-    ### `rgb`
+  ### `rgb`
 
     The generated escape codes would be:
 
@@ -21,7 +21,7 @@ defmodule ExAequo.Color do
       iex(2)> reset()
       "\e[0m"
 
-    ### `format`
+  ### `format`
 
     But like `IO.ANSI` a convenience function called `format` is available
 
@@ -34,7 +34,7 @@ defmodule ExAequo.Color do
       iex(4)> format(["Hello", "World"], to_string: true)
       "HelloWorld"
 
-    #### RGB
+  #### RGB
 
     In order to get colors into the mix we can use, atoms (for named colors or instructions like reset)
     or triples for RGB colors
@@ -42,7 +42,7 @@ defmodule ExAequo.Color do
       iex(5)> format([{100, 20, 150}, "Deep Purple (pun intended)", :reset])
       ["\e[38;2;100;20;150m", "Deep Purple (pun intended)", "\e[0m"]
 
-    #### 8 Color Space
+  #### 8 Color Space
 
     And here are some nice names, which shall work on **all** terminals
 
@@ -56,12 +56,26 @@ defmodule ExAequo.Color do
       ...(7)> format(some_values, reset: true, to_string: true)
       "\e[38;2;240;255;255mThe sky?\e[0m"
 
-    #### 256 Colors
+  #### 256 Colors
 
       iex(8)> format([:color242, :color142, :color42])
       ["\e[38;5;242m", "\e[38;5;142m", "\e[38;5;42m"]
 
 
+  ## Escript `ls_colors`
+
+
+  Test some colors
+
+  ```sh
+      ls_colors :red Red :reset 100,20,150 Deep Purple
+  ```
+
+  Show some colors
+
+  ```sh
+      ls_colors -l|--list red_range green_range blue_range
+  ```
   """
 
   def format(bits, options \\ [])
