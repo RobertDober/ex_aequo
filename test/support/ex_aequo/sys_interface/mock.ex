@@ -11,7 +11,7 @@ defmodule ExAequo.SysInterface.Mock do
     check_invocation_of(:lstat, with: [path, options])
   end
 
-  def wildcard path do
+  def wildcard path, _options \\ [] do
     check_invocation_of(:wildcard, with: [path])
   end
 

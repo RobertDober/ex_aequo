@@ -7,14 +7,14 @@ defmodule ExAequo.Mixfile do
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
   @url "https://github.com/robertdober/ex_aequo"
-  @version "0.4.0"
+  @version "0.5.0"
   def project do
     [
      aliases: [docs: &build_docs/1],
      app: :ex_aequo,
      deps: deps(),
      description: @description,
-     elixir: "~> 1.13",
+     elixir: "~> 1.14",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
@@ -49,7 +49,7 @@ defmodule ExAequo.Mixfile do
   defp deps do
     [
       {:extractly, "~>0.5.3", only: [:dev]},
-      {:excoveralls, "~> 0.14.6", only: [:test]},
+      {:excoveralls, "~> 0.15.0", only: [:test]},
     ]
   end
 
@@ -77,5 +77,4 @@ defmodule ExAequo.Mixfile do
   end
 
 end
-
 # SPDX-License-Identifier: Apache-2.0

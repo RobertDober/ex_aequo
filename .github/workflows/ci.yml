@@ -17,14 +17,17 @@ jobs:
       matrix:
         include:
           - pair:
-            otp: "24.0"
-            elixir: "1.13.0"
-          - pair:
-            otp: 24.1.7
-            elixir: 1.13.0
+            otp: "24.1.2"
+            elixir: "1.14.1"
           - pair:
             otp: 24.2.1
-            elixir: 1.13.3
+            elixir: 1.14.0
+          - pair:
+            otp: 25.0.4
+            elixir: 1.14.1
+          - pair:
+            otp: 25.1.2
+            elixir: 1.14.1
     steps:
       - uses: actions/checkout@v2
       - name: Set up Elixir

@@ -1,6 +1,7 @@
 defmodule ExAequo.Enum.GroupedAccTest do
   use ExUnit.Case
   alias ExAequo.Enum, as: E
+  alias ExAequo.Error
 
   doctest E
 
@@ -11,7 +12,6 @@ defmodule ExAequo.Enum.GroupedAccTest do
 
     test "even one element does not trigger the computation" do 
       assert E.grouped_reduce([true], fn _, _ -> raise Error, "does not happen" end) == [true] 
-      
     end
   end
 
@@ -23,7 +23,7 @@ defmodule ExAequo.Enum.GroupedAccTest do
 
   describe "An illegal grouping function" do
     test "raises an error" do 
-      assert_raise( ExAequo.Error, fn ->
+      assert_raise( Error, fn ->
         E.grouped_inject([1], 2, fn _, _ -> nil end)
       end)
     end
