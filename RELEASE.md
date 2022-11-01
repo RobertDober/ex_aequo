@@ -1,6 +1,6 @@
-# v0.5.1 2022-11-01
+# v0.5.1 2022-??-??
 
-- Add an escript to show colors `ls_colors`
+- Add an escript to show colors `ls_colors` (no need of the new version to use it)
 
 # v0.5.0 2022-11-01
 
