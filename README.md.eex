@@ -19,20 +19,18 @@
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
 being equal, I choose this one.
 
-<%= xtra.moduledoc "ExAequo.File" %>
+<%= xtra.moduledoc "ExAequo.File", wrap_code_blocks: "elixir" %>
 
-<%= xtra.functiondoc :all, module: "ExAequo.File" %>
+<%= xtra.functiondoc :all, module: "ExAequo.File", wrap_code_blocks: "elixir" %>
 
-<%= xtra.moduledoc "ExAequo.Enum" %>
+<%= xtra.moduledoc "ExAequo.Enum", wrap_code_blocks: "elixir" %>
 
-<%= xtra.moduledoc "ExAequo.Color" %>
+<%= xtra.moduledoc "ExAequo.Color", wrap_code_blocks: "elixir" %>
 
-<%= xtra.functiondoc :all, module: "ExAequo.Color" %>
+<%= xtra.moduledoc "ExAequo.KeywordParams", wrap_code_blocks: "elixir" %>
 
-<%= xtra.moduledoc "ExAequo.KeywordParams" %>
+<%= xtra.functiondoc :all, module: "ExAequo.KeywordParams", wrap_code_blocks: "elixir" %>
 
-<%= xtra.functiondoc :all, module: "ExAequo.KeywordParams" %>
-
-<%= xtra.functiondoc :all, module: "ExAequo.Path" %>
+<%= xtra.functiondoc :all, module: "ExAequo.Path", wrap_code_blocks: "elixir" %>
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->

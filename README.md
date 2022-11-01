@@ -33,8 +33,10 @@ expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}
 
 read a file into lines
 
+```elixir
     iex(0)> readlines(Path.join(~W[test fixtures a_simple_file.txt]))
     ["Line 1", "Line two", " Una terza linea"]
+```
 
 expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`, then
 filters only the files from today
@@ -56,6 +58,7 @@ cancels out.
 An optional, `reverse: true` keyword option can be provided to reverse
 the final result for convenience.
 
+```elixir
       iex(0)> add_same = fn {x, a}, {y, b} ->
       ...(0)>               cond do
       ...(0)>                 x == y -> {:cont, {x, a + b}}
@@ -63,10 +66,12 @@ the final result for convenience.
       ...(0)> E.grouped_reduce(
       ...(0)>   [{:a, 1}, {:a, 2}, {:b, 3}, {:b, 4}], add_same)
       [{:b, 7}, {:a, 3}]
+```
 
 The `grouped_inject` function behaves almost identically to `grouped_reduce`,
 however an initial value is provided.
 
+```elixir
       iex(1)> sub_same = fn {x, a}, {y, b} -> 
       ...(1)>               cond do
       ...(1)>                 x == y -> {:cont, {x, a - b}}
@@ -77,6 +82,7 @@ however an initial value is provided.
       ...(1)> [{:a, 1}, {:b, 2}, {:b, 2}, {:c, 2}, {:c, 1}, {:c, 1}],
       ...(1)>  {:a, 43}, sub_same, reverse: true)
       [a: 42, b: 0, c: 0]
+```
 
 
 
@@ -92,13 +98,15 @@ however an initial value is provided.
 
   The generated escape codes would be:
 
+```elixir
     iex(0)> rgb(250, 148, 13)
     "\e[38;2;250;148;13m"
+```
 
+```elixir
     iex(1)> reset()
     "\e[0m"
-
-
+```
 
 
 ## Tools to facilitate dispatching on keyword parameters, used in contexts like the following
@@ -116,11 +124,15 @@ input was
     iex(0)> merge_params([])
     %{}
 
+```elixir
     iex(1)> merge_params([a: 1], %{b: 2})
     %{a: 1, b: 2}
+```
 
+```elixir
     iex(2)> merge_params(%{a: 1}, [a: 2, b: 2])
     %{a: 2, b: 2}
+```
 ```
 
 #### Strict merging
@@ -129,57 +141,77 @@ _Not implemented yet_
 
 ### Extracting params from the merged defaults and actuals
 
+```elixir
     iex(3)> defaults = [foo: false, depth: 3]
     ...(3)> tuple_from_params(defaults, %{foo: true}, [:foo, :depth])
     {true, 3}
+```
 
 As defaults are required a missing parameter will raise an Error
 
+```elixir
     iex(4)> try do
     ...(4)>   tuple_from_params([], [foo: 1], [:bar])
     ...(4)> rescue
     ...(4)>   KeyError -> :caught
     ...(4)> end
     :caught
+```
 
 Alternatively on can extract a map
 
+```elixir
     iex(5)> map_from_params([], [hello: "world"], [:hello])
     %{hello: "world"}
+```
 
 
 
 This is the 2 param form which is identical to an empty default map
 
+```elixir
     iex(6)> map_from_params(%{a: 1, b: 2}, [:a])
     %{a: 1}
+```
 
 This is the 2 param form which is identical to an empty default map
 
+```elixir
     iex(7)> tuple_from_params(%{a: 1, b: 2}, [:b, :a])
     {2, 1}
+```
 
 
     iex(0)> basename_without_ext("a/b/c.txt")
     "c"
 
+```elixir
     iex(1)> basename_without_ext("a/b/c.txt.eex")
     "c.txt"
+```
 
+```elixir
     iex(2)> basename_without_ext("a/b/c")
     "c"
+```
 
     iex(3)> fullname_without_ext("a/b/c.txt")
     "a/b/c"
 
+```elixir
     iex(4)> fullname_without_ext("a/b/c.txt.eex")
     "a/b/c.txt"
+```
 
+```elixir
     iex(5)> fullname_without_ext("a/b/c")
     "a/b/c"
+```
 
+```elixir
     iex(6)> fullname_without_ext("/c")
     "/c"
+```
 
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
