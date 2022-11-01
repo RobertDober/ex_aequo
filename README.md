@@ -96,17 +96,73 @@ however an initial value is provided.
     IO.puts(ExAequo.Color.rgb(250, 148, 13) <> "Brownish Orange" <> ExAequo.Color.reset)
   ```
 
+  ### `rgb`
+
   The generated escape codes would be:
 
 ```elixir
-    iex(0)> rgb(250, 148, 13)
+    iex(1)> rgb(250, 148, 13)
     "\e[38;2;250;148;13m"
 ```
 
 ```elixir
-    iex(1)> reset()
+    iex(2)> reset()
     "\e[0m"
 ```
+
+  ### `format`
+
+  But like `IO.ANSI` a convenience function called `format` is available
+
+```elixir
+    iex(3)> format(["Hello", "World"])
+    ["Hello", "World"]
+```
+
+  As one can see it is tailor made for `IO.puts` and may be converted into a string by means of
+  `IO.chardata_to_string`, this conversion can also be done by `format` itself
+
+```elixir
+    iex(4)> format(["Hello", "World"], to_string: true)
+    "HelloWorld"
+```
+
+  #### RGB
+
+  In order to get colors into the mix we can use, atoms (for named colors or instructions like reset)
+  or triples for RGB colors
+
+```elixir
+    iex(5)> format([{100, 20, 150}, "Deep Purple (pun intended)", :reset])
+    ["\e[38;2;100;20;150m", "Deep Purple (pun intended)", "\e[0m"]
+```
+
+  #### 8 Color Space
+
+  And here are some nice names, which shall work on **all** terminals
+
+```elixir
+    iex(6)> format([:red, "red", :blue, "blue"])
+    ["\e[31m", "red", "\e[34m", "blue"]
+```
+
+  Oftentimes you will pass a variable to `format` and not a literal array, then the usage of the `reset: true` option
+  might come in handy
+
+```elixir
+    iex(7)> some_values = [:azure1, "The sky?"]
+    ...(7)> format(some_values, reset: true, to_string: true)
+    "\e[38;2;240;255;255mThe sky?\e[0m"
+```
+
+  #### 256 Colors
+
+```elixir
+    iex(8)> format([:color242, :color142, :color42])
+    ["\e[38;5;242m", "\e[38;5;142m", "\e[38;5;42m"]
+```
+
+
 
 
 ## Tools to facilitate dispatching on keyword parameters, used in contexts like the following

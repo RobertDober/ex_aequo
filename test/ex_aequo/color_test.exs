@@ -47,5 +47,25 @@ defmodule Test.ExAequo.ColorTest do
     end)
   end
 
+  describe "256 colors space" do
+    (0..255)
+    |> Enum.each(fn n ->
+      expected = ["\e[38;5;#{n}m"]
+      input = ["color#{n}" |> String.to_atom]
+      test_name = "color #{n} from 256 colors space"
+      test test_name do
+        assert format(unquote(input)) == unquote(expected)
+      end
+    end)
+  end
+
+  describe "error message" do
+    test "not a color" do
+      assert_raise ExAequo.Error, fn ->
+        format([:definitely_not_a_colorzjieozfef])
+      end
+    end
+  end
+
 end
 # SPDX-License-Identifier: Apache-2.0

@@ -11,6 +11,8 @@ defmodule ExAequo.Color do
       IO.puts(ExAequo.Color.rgb(250, 148, 13) <> "Brownish Orange" <> ExAequo.Color.reset)
     ```
 
+    ### `rgb`
+
     The generated escape codes would be:
 
       iex(1)> rgb(250, 148, 13)
@@ -18,6 +20,8 @@ defmodule ExAequo.Color do
 
       iex(2)> reset()
       "\e[0m"
+
+    ### `format`
 
     But like `IO.ANSI` a convenience function called `format` is available
 
@@ -30,11 +34,15 @@ defmodule ExAequo.Color do
       iex(4)> format(["Hello", "World"], to_string: true)
       "HelloWorld"
 
+    #### RGB
+
     In order to get colors into the mix we can use, atoms (for named colors or instructions like reset)
     or triples for RGB colors
 
       iex(5)> format([{100, 20, 150}, "Deep Purple (pun intended)", :reset])
       ["\e[38;2;100;20;150m", "Deep Purple (pun intended)", "\e[0m"]
+
+    #### 8 Color Space
 
     And here are some nice names, which shall work on **all** terminals
 
@@ -47,6 +55,12 @@ defmodule ExAequo.Color do
       iex(7)> some_values = [:azure1, "The sky?"]
       ...(7)> format(some_values, reset: true, to_string: true)
       "\e[38;2;240;255;255mThe sky?\e[0m"
+
+    #### 256 Colors
+
+      iex(8)> format([:color242, :color142, :color42])
+      ["\e[38;5;242m", "\e[38;5;142m", "\e[38;5;42m"]
+
 
   """
 
@@ -90,6 +104,262 @@ defmodule ExAequo.Color do
     chartreuse2: {95, 255, 0},
     chartreuse3: {95, 175, 0},
     chartreuse4: {95, 135, 0},
+    color0: "\e[38;5;0m",
+    color1: "\e[38;5;1m",
+    color2: "\e[38;5;2m",
+    color3: "\e[38;5;3m",
+    color4: "\e[38;5;4m",
+    color5: "\e[38;5;5m",
+    color6: "\e[38;5;6m",
+    color7: "\e[38;5;7m",
+    color8: "\e[38;5;8m",
+    color9: "\e[38;5;9m",
+    color10: "\e[38;5;10m",
+    color11: "\e[38;5;11m",
+    color12: "\e[38;5;12m",
+    color13: "\e[38;5;13m",
+    color14: "\e[38;5;14m",
+    color15: "\e[38;5;15m",
+    color16: "\e[38;5;16m",
+    color17: "\e[38;5;17m",
+    color18: "\e[38;5;18m",
+    color19: "\e[38;5;19m",
+    color20: "\e[38;5;20m",
+    color21: "\e[38;5;21m",
+    color22: "\e[38;5;22m",
+    color23: "\e[38;5;23m",
+    color24: "\e[38;5;24m",
+    color25: "\e[38;5;25m",
+    color26: "\e[38;5;26m",
+    color27: "\e[38;5;27m",
+    color28: "\e[38;5;28m",
+    color29: "\e[38;5;29m",
+    color30: "\e[38;5;30m",
+    color31: "\e[38;5;31m",
+    color32: "\e[38;5;32m",
+    color33: "\e[38;5;33m",
+    color34: "\e[38;5;34m",
+    color35: "\e[38;5;35m",
+    color36: "\e[38;5;36m",
+    color37: "\e[38;5;37m",
+    color38: "\e[38;5;38m",
+    color39: "\e[38;5;39m",
+    color40: "\e[38;5;40m",
+    color41: "\e[38;5;41m",
+    color42: "\e[38;5;42m",
+    color43: "\e[38;5;43m",
+    color44: "\e[38;5;44m",
+    color45: "\e[38;5;45m",
+    color46: "\e[38;5;46m",
+    color47: "\e[38;5;47m",
+    color48: "\e[38;5;48m",
+    color49: "\e[38;5;49m",
+    color50: "\e[38;5;50m",
+    color51: "\e[38;5;51m",
+    color52: "\e[38;5;52m",
+    color53: "\e[38;5;53m",
+    color54: "\e[38;5;54m",
+    color55: "\e[38;5;55m",
+    color56: "\e[38;5;56m",
+    color57: "\e[38;5;57m",
+    color58: "\e[38;5;58m",
+    color59: "\e[38;5;59m",
+    color60: "\e[38;5;60m",
+    color61: "\e[38;5;61m",
+    color62: "\e[38;5;62m",
+    color63: "\e[38;5;63m",
+    color64: "\e[38;5;64m",
+    color65: "\e[38;5;65m",
+    color66: "\e[38;5;66m",
+    color67: "\e[38;5;67m",
+    color68: "\e[38;5;68m",
+    color69: "\e[38;5;69m",
+    color70: "\e[38;5;70m",
+    color71: "\e[38;5;71m",
+    color72: "\e[38;5;72m",
+    color73: "\e[38;5;73m",
+    color74: "\e[38;5;74m",
+    color75: "\e[38;5;75m",
+    color76: "\e[38;5;76m",
+    color77: "\e[38;5;77m",
+    color78: "\e[38;5;78m",
+    color79: "\e[38;5;79m",
+    color80: "\e[38;5;80m",
+    color81: "\e[38;5;81m",
+    color82: "\e[38;5;82m",
+    color83: "\e[38;5;83m",
+    color84: "\e[38;5;84m",
+    color85: "\e[38;5;85m",
+    color86: "\e[38;5;86m",
+    color87: "\e[38;5;87m",
+    color88: "\e[38;5;88m",
+    color89: "\e[38;5;89m",
+    color90: "\e[38;5;90m",
+    color91: "\e[38;5;91m",
+    color92: "\e[38;5;92m",
+    color93: "\e[38;5;93m",
+    color94: "\e[38;5;94m",
+    color95: "\e[38;5;95m",
+    color96: "\e[38;5;96m",
+    color97: "\e[38;5;97m",
+    color98: "\e[38;5;98m",
+    color99: "\e[38;5;99m",
+    color100: "\e[38;5;100m",
+    color101: "\e[38;5;101m",
+    color102: "\e[38;5;102m",
+    color103: "\e[38;5;103m",
+    color104: "\e[38;5;104m",
+    color105: "\e[38;5;105m",
+    color106: "\e[38;5;106m",
+    color107: "\e[38;5;107m",
+    color108: "\e[38;5;108m",
+    color109: "\e[38;5;109m",
+    color110: "\e[38;5;110m",
+    color111: "\e[38;5;111m",
+    color112: "\e[38;5;112m",
+    color113: "\e[38;5;113m",
+    color114: "\e[38;5;114m",
+    color115: "\e[38;5;115m",
+    color116: "\e[38;5;116m",
+    color117: "\e[38;5;117m",
+    color118: "\e[38;5;118m",
+    color119: "\e[38;5;119m",
+    color120: "\e[38;5;120m",
+    color121: "\e[38;5;121m",
+    color122: "\e[38;5;122m",
+    color123: "\e[38;5;123m",
+    color124: "\e[38;5;124m",
+    color125: "\e[38;5;125m",
+    color126: "\e[38;5;126m",
+    color127: "\e[38;5;127m",
+    color128: "\e[38;5;128m",
+    color129: "\e[38;5;129m",
+    color130: "\e[38;5;130m",
+    color131: "\e[38;5;131m",
+    color132: "\e[38;5;132m",
+    color133: "\e[38;5;133m",
+    color134: "\e[38;5;134m",
+    color135: "\e[38;5;135m",
+    color136: "\e[38;5;136m",
+    color137: "\e[38;5;137m",
+    color138: "\e[38;5;138m",
+    color139: "\e[38;5;139m",
+    color140: "\e[38;5;140m",
+    color141: "\e[38;5;141m",
+    color142: "\e[38;5;142m",
+    color143: "\e[38;5;143m",
+    color144: "\e[38;5;144m",
+    color145: "\e[38;5;145m",
+    color146: "\e[38;5;146m",
+    color147: "\e[38;5;147m",
+    color148: "\e[38;5;148m",
+    color149: "\e[38;5;149m",
+    color150: "\e[38;5;150m",
+    color151: "\e[38;5;151m",
+    color152: "\e[38;5;152m",
+    color153: "\e[38;5;153m",
+    color154: "\e[38;5;154m",
+    color155: "\e[38;5;155m",
+    color156: "\e[38;5;156m",
+    color157: "\e[38;5;157m",
+    color158: "\e[38;5;158m",
+    color159: "\e[38;5;159m",
+    color160: "\e[38;5;160m",
+    color161: "\e[38;5;161m",
+    color162: "\e[38;5;162m",
+    color163: "\e[38;5;163m",
+    color164: "\e[38;5;164m",
+    color165: "\e[38;5;165m",
+    color166: "\e[38;5;166m",
+    color167: "\e[38;5;167m",
+    color168: "\e[38;5;168m",
+    color169: "\e[38;5;169m",
+    color170: "\e[38;5;170m",
+    color171: "\e[38;5;171m",
+    color172: "\e[38;5;172m",
+    color173: "\e[38;5;173m",
+    color174: "\e[38;5;174m",
+    color175: "\e[38;5;175m",
+    color176: "\e[38;5;176m",
+    color177: "\e[38;5;177m",
+    color178: "\e[38;5;178m",
+    color179: "\e[38;5;179m",
+    color180: "\e[38;5;180m",
+    color181: "\e[38;5;181m",
+    color182: "\e[38;5;182m",
+    color183: "\e[38;5;183m",
+    color184: "\e[38;5;184m",
+    color185: "\e[38;5;185m",
+    color186: "\e[38;5;186m",
+    color187: "\e[38;5;187m",
+    color188: "\e[38;5;188m",
+    color189: "\e[38;5;189m",
+    color190: "\e[38;5;190m",
+    color191: "\e[38;5;191m",
+    color192: "\e[38;5;192m",
+    color193: "\e[38;5;193m",
+    color194: "\e[38;5;194m",
+    color195: "\e[38;5;195m",
+    color196: "\e[38;5;196m",
+    color197: "\e[38;5;197m",
+    color198: "\e[38;5;198m",
+    color199: "\e[38;5;199m",
+    color200: "\e[38;5;200m",
+    color201: "\e[38;5;201m",
+    color202: "\e[38;5;202m",
+    color203: "\e[38;5;203m",
+    color204: "\e[38;5;204m",
+    color205: "\e[38;5;205m",
+    color206: "\e[38;5;206m",
+    color207: "\e[38;5;207m",
+    color208: "\e[38;5;208m",
+    color209: "\e[38;5;209m",
+    color210: "\e[38;5;210m",
+    color211: "\e[38;5;211m",
+    color212: "\e[38;5;212m",
+    color213: "\e[38;5;213m",
+    color214: "\e[38;5;214m",
+    color215: "\e[38;5;215m",
+    color216: "\e[38;5;216m",
+    color217: "\e[38;5;217m",
+    color218: "\e[38;5;218m",
+    color219: "\e[38;5;219m",
+    color220: "\e[38;5;220m",
+    color221: "\e[38;5;221m",
+    color222: "\e[38;5;222m",
+    color223: "\e[38;5;223m",
+    color224: "\e[38;5;224m",
+    color225: "\e[38;5;225m",
+    color226: "\e[38;5;226m",
+    color227: "\e[38;5;227m",
+    color228: "\e[38;5;228m",
+    color229: "\e[38;5;229m",
+    color230: "\e[38;5;230m",
+    color231: "\e[38;5;231m",
+    color232: "\e[38;5;232m",
+    color233: "\e[38;5;233m",
+    color234: "\e[38;5;234m",
+    color235: "\e[38;5;235m",
+    color236: "\e[38;5;236m",
+    color237: "\e[38;5;237m",
+    color238: "\e[38;5;238m",
+    color239: "\e[38;5;239m",
+    color240: "\e[38;5;240m",
+    color241: "\e[38;5;241m",
+    color242: "\e[38;5;242m",
+    color243: "\e[38;5;243m",
+    color244: "\e[38;5;244m",
+    color245: "\e[38;5;245m",
+    color246: "\e[38;5;246m",
+    color247: "\e[38;5;247m",
+    color248: "\e[38;5;248m",
+    color249: "\e[38;5;249m",
+    color250: "\e[38;5;250m",
+    color251: "\e[38;5;251m",
+    color252: "\e[38;5;252m",
+    color253: "\e[38;5;253m",
+    color254: "\e[38;5;254m",
+    color255: "\e[38;5;255m",
     cornflower_blue: {95, 135, 255},
     cornsilk1: {255, 255, 215},
     cyan1: {0, 255, 255},
@@ -295,7 +565,8 @@ defmodule ExAequo.Color do
     end
   end
 
-  defp _hex_to_rgb("#" <> bytes) do
+  defp _string_to_color(string)
+  defp _string_to_color("#" <> bytes) do
     bytes
     |> String.codepoints()
     |> Enum.chunk_every(2)
@@ -303,11 +574,11 @@ defmodule ExAequo.Color do
     |> List.to_tuple()
     |> rgb()
   end
+  defp _string_to_color(string), do: string
 
   defp _transform(value)
   defp _transform(value) when is_number(value), do: "\e[#{value}m"
-  defp _transform(value) when is_binary(value), do: _hex_to_rgb(value)
-  defp _transform(value), do: value
+  defp _transform(value) when is_binary(value), do: _string_to_color(value)
 end
 
 # SPDX-License-Identifier: Apache-2.0
