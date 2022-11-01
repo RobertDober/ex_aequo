@@ -17,8 +17,7 @@ and any changes you make in this file will most likely be lost
 ### Installation:
 
 ```elxir
-  { :ex_aequo, ">= 0.4.0" }
-
+  { :ex_aequo, ">= 0.5.0" }
 ```
 
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
@@ -78,6 +77,28 @@ however an initial value is provided.
       ...(1)> [{:a, 1}, {:b, 2}, {:b, 2}, {:c, 2}, {:c, 1}, {:c, 1}],
       ...(1)>  {:a, 43}, sub_same, reverse: true)
       [a: 42, b: 0, c: 0]
+
+
+
+  ## Support for the 256 ANSI and full RGB colors
+
+  **N.B.** Does, of course, respect the usage of the `$NO_COLOR` variable
+
+  The most basic approach is to use the generated escape sequences directly in your code, e.g.
+
+  ```elixir
+    IO.puts(ExAequo.Color.rgb(250, 148, 13) <> "Brownish Orange" <> ExAequo.Color.reset)
+  ```
+
+  The generated escape codes would be:
+
+    iex(0)> rgb(250, 148, 13)
+    "\e[38;2;250;148;13m"
+
+    iex(1)> reset()
+    "\e[0m"
+
+
 
 
 ## Tools to facilitate dispatching on keyword parameters, used in contexts like the following
@@ -161,4 +182,4 @@ This is the 2 param form which is identical to an empty default map
     "/c"
 
 
-SPDX-License-Identifier: Apache-2.0
+<!-- SPDX-License-Identifier: Apache-2.0 -->

@@ -14,7 +14,6 @@
 
 ```elxir
   { :ex_aequo, ">= <%= ExAequo.version %>" }
-
 ```
 
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
@@ -26,10 +25,14 @@ being equal, I choose this one.
 
 <%= xtra.moduledoc "ExAequo.Enum" %>
 
+<%= xtra.moduledoc "ExAequo.Color" %>
+
+<%= xtra.functiondoc :all, module: "ExAequo.Color" %>
+
 <%= xtra.moduledoc "ExAequo.KeywordParams" %>
 
 <%= xtra.functiondoc :all, module: "ExAequo.KeywordParams" %>
 
 <%= xtra.functiondoc :all, module: "ExAequo.Path" %>
 
-SPDX-License-Identifier: Apache-2.0
+<!-- SPDX-License-Identifier: Apache-2.0 -->

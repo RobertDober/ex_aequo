@@ -1,6 +1,6 @@
 # v0.5.0 2022-11-01
 
-- Color Tools
+- Color Tools `ExAequo.Color`
 
 - Remove Support for Elixir version < 1.14
 
