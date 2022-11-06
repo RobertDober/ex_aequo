@@ -1,3 +1,6 @@
+# v0.6.0 2022-11-06
+
+- Simple CL arguments parser
 # v0.5.1 2022-11-01
 
 - Added color orange

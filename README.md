@@ -23,6 +23,212 @@ and any changes you make in this file will most likely be lost
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
 being equal, I choose this one.
 
+
+A simple Command Line Argument Parser delivering syntactically but not semantically checked Commnad Line Arguments
+
+Nothing in → Nothing out
+
+```elixir
+    iex(1)> parse([])
+    {:ok, %{args: [], kwds: %{}}}
+```
+
+Positionals only
+
+```elixir
+    iex(2)> parse(~W[alpha beta gamma])
+    {:ok, %{args: ~W[alpha beta gamma], kwds: %{}}}
+```
+
+Flags are indicated by a leading `:`
+
+```elixir
+    iex(3)> parse(~W[:verbose :help alpha beta gamma])
+    {:ok, %{args: ~W[alpha beta gamma], kwds: %{verbose: true, help: true}}}
+```
+
+Keywords needing values are defined à la json with a trailing `:`
+
+```elixir
+    iex(4)> parse(~W[level: 42 :h name: Elixir])
+    {:ok, %{args: ~W[], kwds: %{level: "42", h: true, name: "Elixir"}}}
+```
+
+A single `:` just ends keyword parsing
+
+```elixir
+    iex(5)> parse(~W[level: 42 : :h name: Elixir])
+    {:ok, %{args: ~W[:h name: Elixir], kwds: %{level: "42"}}}
+```
+
+Beware of not giving values to keywords
+
+```elixir
+    iex(6)> parse(~W[level:])
+    {:error, %{args: [], kwds: %{}, error: "Missing value for keyword arg level!" }}
+```
+
+```elixir
+    iex(7)> parse(~W[level: : high])
+    {:error, %{args: ~W[high], kwds: %{}, error: "Missing value for keyword arg level!" }}
+```
+
+
+
+
+This module allows to parse Command Line Arguments with attached semantics, that is
+
+ **Constraints** and **Conversions**
+
+## Errors from the `SimpleClaParser` are returned verbatim
+
+```elixir
+    iex(1)> parse(~W[a:])
+    {:error, %{args: [], kwds: %{}, error: "Missing value for keyword arg a!"}}
+```
+
+
+Empty args might be ok
+
+```elixir
+    iex(2)> parse([])
+    {:ok, %{args: [], kwds: %{}}}
+```
+
+or they might not
+
+```elixir
+    iex(3)> parse([], required: [:level])
+    {:error, %{args: [], kwds: %{}, errors: [missing_required_kwd: :level]}}
+```
+
+## Constraints can also do conversions
+
+```elixir
+    iex(4)> parse(~W[value: 42], required: [value: :int])
+    {:ok, %{args: [], kwds: %{value: 42}}}
+```
+
+and if they fail we get an error
+
+```elixir
+    iex(5)> parse(~W[value: 42a], required: [value: :int])
+    {:error, %{args: [], kwds: %{value: "42a"}, errors: [{:bad_constraint_int, :value, "42a"}]}}
+```
+
+constraints can also be defined for optional values
+
+```elixir
+    iex(6)> parse(~W[value: 42], optional: [value: :int])
+    {:ok, %{args: [], kwds: %{value: 42}}}
+```
+
+and then it is ok, not to provide them
+
+```elixir
+    iex(7)> parse([], optional: [value: :int])
+    {:ok, %{args: [], kwds: %{}}}
+```
+
+but if we do so we must oblige
+
+```elixir
+    iex(8)> parse(~W[value: xxx], optional: [value: :int])
+    {:error, %{args: [], kwds: %{value: "xxx"}, errors: [{:bad_constraint_int, :value, "xxx"}]}}
+```
+
+and constraints work for positionals too
+
+```elixir
+    iex(9)> parse(~W[10], optional: [{0, :int}])
+    {:ok, %{args: [10], kwds: %{}}}
+```
+
+```elixir
+    iex(10)> parse(~W[ten], optional: [{0, :int}])
+    {:error, %{args: ~W[ten], kwds: %{}, errors: [{:bad_constraint_int, 0, "ten"}]}}
+```
+
+and as positionals are optional unless constrained with `needed:` this is ok
+
+```elixir
+    iex(11)> parse([], optional: [{0, :int}])
+    {:ok, %{args: [], kwds: %{}}}
+```
+
+## Custom made constraints need either return `{:ok, value}`
+
+```elixir
+    iex(12)> always_42 = fn _, _ -> {:ok, 42} end
+    ...(12)> parse(~W[value: hello!], optional: [value: always_42])
+    {:ok, %{args: [], kwds: %{value: 42}}}
+```
+
+or `{:error, message}`
+
+```elixir
+    iex(13)> never_happy = fn val, key -> {:error, {:so_bad, key, "must not have #{val}"}} end
+    ...(13)> parse(~W[value: hello!], optional: [value: never_happy])
+    {:error, %{args: [], kwds: %{value: "hello!"}, errors: [{:so_bad, :value,  "must not have hello!"}]}}
+```
+
+## Memberships
+
+### Ranges
+
+```elixir
+    iex(14)> int_range = &ExAequo.SemanticClaParser.Constraints.int_range/2
+    ...(14)> parse(~W[42], optional: [{0, int_range.(41, 43)}]) 
+    {:ok, %{args: [42], kwds: %{}}}
+```
+
+```elixir
+    iex(15)> int_range = &ExAequo.SemanticClaParser.Constraints.int_range/2
+    ...(15)> parse(~W[420], optional: [{0, int_range.(41, 43)}]) 
+    {:error, %{args: ~W[420], kwds: %{}, errors: [{:not_in_int_range, 0, 420, 41..43}]}}
+```
+
+```elixir
+    iex(16)> int_range = &ExAequo.SemanticClaParser.Constraints.int_range/2
+    ...(16)> parse(~W[a], optional: [{0, int_range.(41, 43)}]) 
+    {:error, %{args: ["a"], kwds: %{}, errors: [{:bad_constraint_int_range, 0, "a"}]}}
+```
+  
+Note that we cannot specify the nth positional argument as required, we can however constrain the number of positional
+argumentes
+
+```elixir
+    iex(17)> parse([], needed: 0..1)
+    {:ok, %{args: [], kwds: %{}}}
+```
+
+```elixir
+    iex(18)> parse(~W[one], needed: 0..1)
+    {:ok, %{args: ["one"], kwds: %{}}}
+```
+
+```elixir
+    iex(19)> parse(~W[:a one], needed: 0..1)
+    {:ok, %{args: ["one"], kwds: %{a: true}}}
+```
+
+However
+
+```elixir
+    iex(20)> parse(~W[: :a one], needed: 0..1)
+    {:error, %{args: [":a", "one"], kwds: %{}, errors: [{:illegal_number_of_args, 0..1, 2}]}}
+```
+
+We can even forbid positionals like that
+
+```elixir
+    iex(21)> parse(~W[a], needed: 0)
+    {:error, %{args: ["a"], kwds: %{}, errors: [{:illegal_number_of_args, 0..0, 1}]}}
+```
+
+  
+
+
 ## ExAequo.File
 
 
