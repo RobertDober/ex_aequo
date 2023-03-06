@@ -34,6 +34,16 @@ defmodule ExAequo.Color do
       iex(4)> format(["Hello", "World"], to_string: true)
       "HelloWorld"
 
+  ### `putc`
+
+    A shortcut for
+
+    ```elixir
+        color_definition_list
+        |> format
+        |> IO.puts
+    ```
+
   #### RGB
 
     In order to get colors into the mix we can use, atoms (for named colors or instructions like reset)
@@ -95,6 +105,12 @@ defmodule ExAequo.Color do
     else
       output
     end
+  end
+
+  def putc(colordef, device \\ :stdio)
+  def putc(colordef, device) do
+    colorstring = format(colordef)
+    IO.puts(device, colorstring)
   end
 
   def reset, do: "\e[0m"

@@ -349,6 +349,16 @@ however an initial value is provided.
     "HelloWorld"
 ```
 
+### `putc`
+
+  A shortcut for
+
+  ```elixir
+      color_definition_list
+      |> format
+      |> IO.puts
+  ```
+
 #### RGB
 
   In order to get colors into the mix we can use, atoms (for named colors or instructions like reset)
