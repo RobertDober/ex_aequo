@@ -23,6 +23,8 @@ and any changes you make in this file will most likely be lost
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
 being equal, I choose this one.
 
+## ExAequo.SimpleClaParser
+
 
 A simple Command Line Argument Parser delivering syntactically but not semantically checked Commnad Line Arguments
 
@@ -74,6 +76,8 @@ Beware of not giving values to keywords
 ```
 
 
+
+## ExAequo.SemanticClaParser
 
 
 This module allows to parse Command Line Arguments with attached semantics, that is
@@ -231,10 +235,18 @@ We can even forbid positionals like that
 
 ## ExAequo.File
 
+## ExAequo.File
 
 
+
+### ExAequo.File.files/1
+
+
+### ExAequo.File.files_with_stat/1
 
 expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`
+
+### ExAequo.File.readlines/1
 
 
 read a file into lines
@@ -243,6 +255,8 @@ read a file into lines
     iex(0)> readlines(Path.join(~W[test fixtures a_simple_file.txt]))
     ["Line 1", "Line two", " Una terza linea"]
 ```
+
+### ExAequo.File.today/1
 
 expands `wc` and zips each matching file into a list of `{String.t, File.Stat.t}`, then
 filters only the files from today
@@ -290,6 +304,8 @@ however an initial value is provided.
       [a: 42, b: 0, c: 0]
 ```
 
+
+## ExAequo.Color
 
 
   ## Support for the 256 ANSI and full RGB colors
