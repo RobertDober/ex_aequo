@@ -1,11 +1,12 @@
 defmodule ExAequo.Color.Escript do
-  import ExAequo.Color, only: [format: 2]
+  import ExAequo.Color, only: [format: 1, format: 2]
 
   def main(args)
   def main(["--list", r, g, b]), do: _list(r, g, b, "20")
   def main(["-l", r, g, b]), do: _list(r, g, b, "20")
   def main(["--list", r, g, b, s]), do: _list(r, g, b, s)
   def main(["-l", r, g, b, s]), do: _list(r, g, b, s)
+  def main(["--256"]), do: _ls256()
   def main(args), do: _echo(args)
 
   defp _echo(args) do
@@ -34,6 +35,20 @@ defmodule ExAequo.Color.Escript do
     |> Enum.each(fn rgb ->
       puts([rgb, inspect(rgb)])
     end)
+  end
+
+  defp _ls256 do
+    for high <- 0..31 do
+      for color <- 8*high..(8*high+7) do
+         color_str = "color#{color}"
+         color_sym = String.to_atom(color_str)
+         [color_sym, "\\e[38;5;252m #{color_str}"] 
+      end
+      |> Enum.map( fn [sym, str] ->
+        format([sym, String.pad_trailing(str, 23, " ")])
+      end)
+      |> IO.puts
+    end
   end
 
   defp _range(r, s) do

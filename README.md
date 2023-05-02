@@ -17,7 +17,7 @@ and any changes you make in this file will most likely be lost
 ### Installation:
 
 ```elxir
-  { :ex_aequo, ">= 0.5.1" }
+  { :ex_aequo, ">= 0.5.3" }
 ```
 
 Meaning of the name. All nice latin expressions starting with _Ex_ are consumed at an alarming rate, so, all things
