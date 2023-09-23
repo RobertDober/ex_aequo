@@ -7,14 +7,14 @@ defmodule ExAequo.Mixfile do
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
   @url "https://github.com/robertdober/ex_aequo"
-  @version "0.5.3"
+  @version "0.6.0"
   def project do
     [
      aliases: [docs: &build_docs/1],
      app: :ex_aequo,
      deps: deps(),
      description: @description,
-     elixir: "~> 1.14",
+     elixir: "~> 1.15",
       escript: escript_config(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -46,7 +46,7 @@ defmodule ExAequo.Mixfile do
   defp escript_config do
     [
       main_module: ExAequo.Color.Escript,
-      name: "ls_colors"
+      name: "colorize"
     ]
   end
 

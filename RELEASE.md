@@ -1,6 +1,9 @@
-# v0.6.0 2022-11-06
+# v0.6.0 2023-09-23
 
-- Simple CL arguments parser
+- more ANSI codes (bold, dim, italic, underline)
+
+- CLI `colorize`
+
 # v0.5.1 2022-11-01
 
 - Added color orange

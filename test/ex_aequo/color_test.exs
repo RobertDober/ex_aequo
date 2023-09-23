@@ -1,6 +1,5 @@
 defmodule Test.ExAequo.ColorTest do
   use ExUnit.Case
-  doctest ExAequo.Color, import: true
 
   alias Support.Random
   import ExAequo.Color
@@ -47,6 +46,26 @@ defmodule Test.ExAequo.ColorTest do
     end)
   end
 
+  describe "legacy background colors" do
+    [
+      {40, :bg_black },
+      {41, :bg_red },
+      {42, :bg_green },
+      {43, :bg_yellow },
+      {44, :bg_blue },
+      {45, :bg_magenta },
+      {46, :bg_cyan },
+      {47, :bg_white}
+    ] |> Enum.each( fn {escape, name} ->
+      expected = ["\e[#{escape}m", "#{name}"]
+      input = [name, to_string(name)]
+      test_name = "legacy ANSI color #{name}"
+      test test_name do
+        assert format(unquote(input)) == unquote(expected)
+      end
+    end)
+  end
+
   describe "256 colors space" do
     (0..255)
     |> Enum.each(fn n ->
@@ -57,6 +76,19 @@ defmodule Test.ExAequo.ColorTest do
         assert format(unquote(input)) == unquote(expected)
       end
     end)
+  end
+
+  describe "256 colors background space" do
+    (0..255)
+    |> Enum.each(fn n ->
+      expected = ["\e[48;5;#{n}m"]
+      input = ["bg_color#{n}" |> String.to_atom]
+      test_name = "bg color #{n} from 256 colors space"
+      test test_name do
+        assert format(unquote(input)) == unquote(expected)
+      end
+    end)
+
   end
 
   describe "error message" do
