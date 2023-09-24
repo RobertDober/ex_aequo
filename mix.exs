@@ -15,7 +15,7 @@ defmodule ExAequo.Mixfile do
      deps: deps(),
      description: @description,
      elixir: "~> 1.15",
-      escript: escript_config(),
+     escript: escript_config(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
@@ -35,8 +35,8 @@ defmodule ExAequo.Mixfile do
 
   defp deps do
     [
-      {:extractly, "~>0.5.3", only: [:dev]},
       {:excoveralls, "~> 0.17.1", only: [:test]},
+      {:extractly, "~>0.5.3", only: [:dev]},
     ]
   end
 

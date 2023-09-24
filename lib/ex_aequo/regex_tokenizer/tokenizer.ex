@@ -13,13 +13,15 @@ defmodule ExAequo.RegexTokenizer.Tokenizer do
 
   defp _find_token({rgx, fun}, text) do
     case Regex.run(rgx, text) do
+      # [m] -> IO.inspect({rgx, text, m});_rest(text, fun, m, m)
       [m] -> _rest(text, fun, m, m)
+      # [m, c | _] -> IO.inspect({rgx, text, m, c}); _rest(text, fun, m, c)
       [m, c | _] -> _rest(text, fun, m, c)
       nil -> nil
     end
   end
 
-  defp _ignore(tokens, ignores, result \\ [])
+  defp _ignore(tokens, ignores, result)
   defp _ignore([], _, result), do: result
 
   defp _ignore([h | t], ignores, result) do

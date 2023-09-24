@@ -5,7 +5,7 @@ defmodule Test.ExAequo.Color.ColorizerTest do
 
   describe "some doctests" do
     test "bad name" do
-      colorize("\\.red\\.hello.reset.world")
+      assert colorize("\\.red\\.hello.reset.world") == ".red.hello\e[0mworld"
     end
   end
   
