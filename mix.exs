@@ -36,7 +36,7 @@ defmodule ExAequo.Mixfile do
   defp deps do
     [
       {:extractly, "~>0.5.3", only: [:dev]},
-      {:excoveralls, "~> 0.15.0", only: [:test]},
+      {:excoveralls, "~> 0.17.1", only: [:test]},
     ]
   end
 

@@ -1,4 +1,5 @@
 defmodule ExAequo.Color do
+
   @moduledoc ~S"""
 
     ## Support for the 256 ANSI and full RGB colors
@@ -585,14 +586,37 @@ defmodule ExAequo.Color do
   }
 
   @doc ~S"""
+  
+      iex(16)> colorize("hello")
+      "hello"
 
-        iex(16)> color_names() |> Enum.take(2)
+      iex(17)> colorize(".red.hello.reset.world")
+      "\e[31mhello\e[0mworld"
+
+      iex(18)> colorize("\\.red\\.hello.reset.world")
+      ".red.hello\e[0mworld"
+
+    `.` before whitespace is not a leader of course
+
+      iex(19)> colorize("hello. world")
+      "hello. world"
+  """
+
+  def colorize(text, leader \\ ".") do
+    text
+    |> ExAequo.Color.Colorizer.parse(leader)
+    |> format_as_str()
+  end
+
+  @doc ~S"""
+
+        iex(20)> color_names() |> Enum.take(2)
         [:aqua, :aquamarine1]
 
-        iex(17)> color_names(values: true) |> Enum.drop(2) |> Enum.take(4)
+        iex(21)> color_names(values: true) |> Enum.drop(2) |> Enum.take(4)
         [{:aquamarine3, {95, 215, 175}}, {:azure1, {240, 255, 255}}, {:black, 30}, {:blue, 34}]
 
-        iex(18)> color_names(grep: "blue") |> Enum.drop(2) |> Enum.take(4)
+        iex(22)> color_names(grep: "blue") |> Enum.drop(2) |> Enum.take(4)
         [:blue3, :blue_violet, :cadet_blue, :cornflower_blue]
   """
   def color_names(options \\ []) do
@@ -670,17 +694,6 @@ defmodule ExAequo.Color do
       :error -> raise ExAequo.Error, "Illegal color or instruction name for ExAequo.Color #{name}"
     end
   end
-
-  defp _string_to_color(string)
-  defp _string_to_color("#" <> bytes) do
-    bytes
-    |> String.codepoints()
-    |> Enum.chunk_every(2)
-    |> Enum.map(fn p -> with {r, ""} <- Integer.parse(p |> Enum.join(), 16), do: r end)
-    |> List.to_tuple()
-    |> rgb()
-  end
-  defp _string_to_color(string), do: string
 
   defp _transform(value, offset)
   defp _transform(value, offset) when is_number(value), do: "\e[#{value+offset}m"
