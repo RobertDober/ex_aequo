@@ -7,7 +7,9 @@ defmodule ExAequo.Mixfile do
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
   @url "https://github.com/robertdober/ex_aequo"
-  @version "0.6.0"
+  @release_date "2023-09-24"
+
+  @version "0.6.1"
   def project do
     [
      aliases: [docs: &build_docs/1],
@@ -30,11 +32,17 @@ defmodule ExAequo.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: []]
+    [
+      env: [
+        release_date: @release_date,
+        version: @version
+      ],
+    applications: []]
   end
 
   defp deps do
     [
+      {:minipeg, "~> 0.3.1"},
       {:excoveralls, "~> 0.17.1", only: [:test]},
       {:extractly, "~>0.5.3", only: [:dev]},
     ]

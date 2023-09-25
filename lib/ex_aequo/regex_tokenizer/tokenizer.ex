@@ -12,10 +12,11 @@ defmodule ExAequo.RegexTokenizer.Tokenizer do
   end
 
   defp _find_token({rgx, fun}, text) do
+    # IO.inspect({rgx, text})
     case Regex.run(rgx, text) do
-      # [m] -> IO.inspect({rgx, text, m});_rest(text, fun, m, m)
+      # [m] -> IO.inspect({:match, m});_rest(text, fun, m, m)
       [m] -> _rest(text, fun, m, m)
-      # [m, c | _] -> IO.inspect({rgx, text, m, c}); _rest(text, fun, m, c)
+      # [m, c | _] -> IO.inspect({:capture, m, c}); _rest(text, fun, m, c)
       [m, c | _] -> _rest(text, fun, m, c)
       nil -> nil
     end

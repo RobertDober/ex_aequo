@@ -1,70 +1,53 @@
 defmodule ExAequo.Color.Escript do
-  import ExAequo.Color, only: [format: 1, format: 2]
+  import ExAequo.Color, only: [puts: 1, puts: 2]
 
   def main(args)
-  def main(["--list", r, g, b]), do: _list(r, g, b, "20")
-  def main(["-l", r, g, b]), do: _list(r, g, b, "20")
-  def main(["--list", r, g, b, s]), do: _list(r, g, b, s)
-  def main(["-l", r, g, b, s]), do: _list(r, g, b, s)
-  def main(["--256"]), do: _ls256()
-  def main(args), do: _echo(args)
+  def main(["-v" | _]), do: _version()
+  def main(["--version" | _]), do: _version()
 
-  defp _echo(args) do
-    args
-    |> Enum.map(&_format/1)
-    |> puts()
+  def main(["-h" | _]), do: _help()
+  def main(["--help" | _]), do: _help()
+
+  def main([]), do: nil
+  def main(args) do
+    puts("<red,bold>Error:<reset> #{Enum.join(args)}", :stderr)
+    main(["-h"])
   end
 
-  defp _format(arg)
-  defp _format(":" <> sym), do: String.to_atom(sym)
-  defp _format(arg) do
-    case String.split(arg, ",") do
-      [_, _, _] = t -> t |> Enum.map(&String.to_integer/1) |> List.to_tuple
-      _ -> arg
-    end
+  @help_text ~S"""
+  <cyan>Synopsis:<reset>
+
+  <italic,bold>colorize<reset>: Colorize standard input with <italic>ExAequo.Color.colorize/1
+
+     <dim,uline>Example:<reset> 
+
+       The first line of this help text was specified as follows:
+
+       \<italic,bold\>colorize\<reset>: Colorize standard input with \<italic>ExAequo.Color.colorize/1
+
+  <cyan>Usage:<reset>
+
+  <bold>colorize<reset><green> -h|--help<reset>    . . . shows this text
+  <bold>colorize<reset><green> -v|--version<reset> . . . shows version and release date 
+
+  <bold>colorize<reset><green> options<reset>  . . . . . colorizes standard input with the aforementioned syntax<reset>
+       <green>options<reset> not implemented yet only the defaults are available for now
+       <green>--open<reset> how to start a color name, defaults to <cyan,bold>"\<"<reset>
+       <green>--close<reset> how to end a color name, defaults to <cyan,bold>">"<reset>
+       <green>--sep<reset> how to seperate color names, defaults to <cyan,bold>","<reset>
+       <green>--escape<reset> how to escape the <green>open<reset> char, defaults to <cyan,bold>"\\"<reset>
+  """
+  defp _help do
+    puts(@help_text)
   end
 
-  defp _list(r, g, b, s) do
-    s = String.to_integer(s)
-    r = _range(r, s)
-    g = _range(g, s)
-    b = _range(b, s)
-    all = for x <- r, y <- g, z <- b, do: {x, y, z}
+  defp _env(key), do: Application.fetch_env!(:ex_aequo, key)
 
-    all
-    |> Enum.each(fn rgb ->
-      puts([rgb, inspect(rgb)])
-    end)
-  end
 
-  defp _ls256 do
-    for high <- 0..31 do
-      for color <- 8*high..(8*high+7) do
-         color_str = "color#{color}"
-         color_sym = String.to_atom(color_str)
-         [color_sym, "\\e[38;5;252m #{color_str}"] 
-      end
-      |> Enum.map( fn [sym, str] ->
-        format([sym, String.pad_trailing(str, 23, " ")])
-      end)
-      |> IO.puts
-    end
-  end
-
-  defp _range(r, s) do
-    rs =
-      (String.split(r, "..") ++ [r])
-      |> Enum.take(2)
-      |> Enum.map(&String.to_integer/1)
-
-    args = rs ++ [s]
-    apply(Range, :new, args)
-  end
-
-  defp puts(args) do
-    args
-    |> format(reset: true)
-    |> IO.puts()
+  defp _version do
+    version_info =
+      "version: .cyan.#{_env(:version)} .reset.(.green.#{_env(:release_date)}.reset.)"
+    puts(version_info)
   end
 end
 

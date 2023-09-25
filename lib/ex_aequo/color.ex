@@ -590,21 +590,21 @@ defmodule ExAequo.Color do
       iex(16)> colorize("hello")
       "hello"
 
-      iex(17)> colorize(".red.hello.reset.world")
+      iex(17)> colorize("<red>hello<reset>world")
       "\e[31mhello\e[0mworld"
 
-      iex(18)> colorize("\\.red\\.hello.reset.world")
-      ".red.hello\e[0mworld"
+      iex(18)> colorize("\\<red>hello<reset>world")
+      "<red>hello\e[0mworld"
 
     `.` before whitespace is not a leader of course
 
-      iex(19)> colorize("hello. world")
-      "hello. world"
+      iex(19)> colorize("hello\\< world")
+      "hello< world"
   """
 
-  def colorize(text, leader \\ ".") do
+  def colorize(text, options \\ []) do
     text
-    |> ExAequo.Color.Colorizer.parse(leader)
+    |> ExAequo.Color.Colorizer.parse(options)
     |> format_as_str()
   end
 
@@ -662,6 +662,11 @@ defmodule ExAequo.Color do
   def putc(colordef, device) do
     colorstring = format(colordef)
     IO.puts(device, colorstring)
+  end
+
+  def puts(colordef, device \\ :stdio)
+  def puts(colordef, device) do
+      IO.puts(device, colorize(colordef))
   end
 
   def reset, do: "\e[0m"
