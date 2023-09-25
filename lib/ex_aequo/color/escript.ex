@@ -8,7 +8,10 @@ defmodule ExAequo.Color.Escript do
   def main(["-h" | _]), do: _help()
   def main(["--help" | _]), do: _help()
 
-  def main([]), do: nil
+  def main([]) do
+    IO.read(:stdio, :eof) |> puts()
+  end
+
   def main(args) do
     puts("<red,bold>Error:<reset> #{Enum.join(args)}", :stderr)
     main(["-h"])
@@ -43,10 +46,9 @@ defmodule ExAequo.Color.Escript do
 
   defp _env(key), do: Application.fetch_env!(:ex_aequo, key)
 
-
   defp _version do
     version_info =
-      "version: .cyan.#{_env(:version)} .reset.(.green.#{_env(:release_date)}.reset.)"
+      "version: <cyan>#{_env(:version)} <reset>(<green>#{_env(:release_date)}<reset>)"
     puts(version_info)
   end
 end
