@@ -13,8 +13,9 @@ defmodule ExAequo.Color.Escript do
   end
 
   def main(args) do
-    puts("<red,bold>Error:<reset> #{Enum.join(args)}", :stderr)
-    main(["-h"])
+    args
+    |> Enum.join(" ")
+    |> puts()
   end
 
   @help_text ~S"""
