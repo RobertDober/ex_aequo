@@ -3,6 +3,8 @@ defmodule ExAequo.SysInterface.Implementation do
 
   @behaviour ExAequo.SysInterface.Behavior
   
+  defdelegate env(name), to: System, as: :get_env
+
   @spec expand_path( Path.t() ) :: binary()
   def expand_path path do
     Path.expand(path)

@@ -1,5 +1,4 @@
 defmodule ExAequo.Mixfile do
-
   use Mix.Project
 
   @modulename "ExAequo"
@@ -9,23 +8,28 @@ defmodule ExAequo.Mixfile do
   @url "https://github.com/robertdober/ex_aequo"
   @release_date "2023-09-29"
 
-  @version "0.6.3"
+  @version "0.6.4"
   def project do
     [
-     aliases: [docs: &build_docs/1],
-     app: :ex_aequo,
-     deps: deps(),
-     description: @description,
-     elixir: "~> 1.15",
-     escript: escript_config(),
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     elixirc_paths: elixirc_paths(Mix.env),
-     package:       package(),
-     test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
-     version: @version,
-   ]
+      aliases: [docs: &build_docs/1],
+      app: :ex_aequo,
+      deps: deps(),
+      description: @description,
+      elixir: "~> 1.15",
+      escript: escript_config(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      package: package(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
+      version: @version
+    ]
   end
 
   # Configuration for the OTP application
@@ -37,19 +41,21 @@ defmodule ExAequo.Mixfile do
         release_date: @release_date,
         version: @version
       ],
-    applications: []]
+      applications: [],
+      extra_applications: [:eex]
+    ]
   end
 
   defp deps do
     [
       {:minipeg, "~> 0.3.1"},
       {:excoveralls, "~> 0.17.1", only: [:test]},
-      {:extractly, "~>0.5.3", only: [:dev]},
+      {:extractly, "~>0.5.3", only: [:dev]}
     ]
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp escript_config do
     [
@@ -60,14 +66,14 @@ defmodule ExAequo.Mixfile do
 
   defp package do
     [
-      files:       [ "lib", "mix.exs", "README.md", "LICENSE" ],
+      files: ["lib", "mix.exs", "README.md", "LICENSE"],
       maintainers: [
-                     "Robert Dober <robert.dober@gmail.com>"
-                   ],
-      licenses:    [ "Apache 2 (see the file LICENSE)" ],
-      links:       %{
-                       "GitHub" => "https://github.com/RobertDober/ex_aequo",
-                   }
+        "Robert Dober <robert.dober@gmail.com>"
+      ],
+      licenses: ["Apache 2 (see the file LICENSE)"],
+      links: %{
+        "GitHub" => "https://github.com/RobertDober/ex_aequo"
+      }
     ]
   end
 
@@ -90,6 +96,6 @@ defmodule ExAequo.Mixfile do
     System.cmd(ex_doc, args ++ opts)
     Mix.shell().info("Docs built successfully")
   end
-
 end
+
 # SPDX-License-Identifier: Apache-2.0

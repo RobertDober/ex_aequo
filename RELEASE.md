@@ -1,3 +1,7 @@
+# v0.6.4 2023-10-01
+
+- Allow for Eex expansion in input
+
 # v0.6.3 2023-10-01
 
 - Make colorize accept the NO_COLOR env var
