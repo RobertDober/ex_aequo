@@ -9,7 +9,7 @@ defmodule ExAequo.Mixfile do
   @url "https://github.com/robertdober/ex_aequo"
   @release_date "2023-09-29"
 
-  @version "0.6.2"
+  @version "0.6.3"
   def project do
     [
      aliases: [docs: &build_docs/1],

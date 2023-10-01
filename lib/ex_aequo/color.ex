@@ -656,7 +656,13 @@ defmodule ExAequo.Color do
 
   def format_as_str(bits), do: format(bits, to_string: true)
 
-  def numbered_color(number, offset \\ 0), do: "\e[" <> Integer.to_string(38 + offset) <> ";5;#{number}m"
+  def numbered_color(number, offset \\ 0) do
+    if System.get_env("NO_COLOR") do
+      ""
+    else
+    "\e[" <> Integer.to_string(38 + offset) <> ";5;#{number}m"
+    end
+  end
 
   def putc(colordef, device \\ :stdio)
   def putc(colordef, device) do
@@ -671,7 +677,13 @@ defmodule ExAequo.Color do
 
   def reset, do: "\e[0m"
 
-  def rgb(red, green, blue, offset \\ 0), do: "\e[#{Integer.to_string(38 + offset)};2;#{red};#{green};#{blue}m"
+  def rgb(red, green, blue, offset \\ 0) do
+    if System.get_env("NO_COLOR") do
+      ""
+    else
+      "\e[#{Integer.to_string(38 + offset)};2;#{red};#{green};#{blue}m"
+    end
+  end
 
   def rgb({red, green, blue}, offset \\ 0), do: rgb(red, green, blue, offset)
 
@@ -701,7 +713,14 @@ defmodule ExAequo.Color do
   end
 
   defp _transform(value, offset)
-  defp _transform(value, offset) when is_number(value), do: "\e[#{value+offset}m"
+  defp _transform(value, offset) when is_number(value) do
+    if System.get_env("NO_COLOR") do
+      ""
+    else
+     "\e[#{value+offset}m"
+    end
+  end
+
   defp _transform({r, g, b}, offset), do: rgb(r, g, b, offset)
   defp _transform({:color, number}, offset), do: numbered_color(number, offset) 
 end

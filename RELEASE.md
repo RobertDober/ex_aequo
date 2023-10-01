@@ -1,3 +1,7 @@
+# v0.6.3 2023-10-01
+
+- Make colorize accept the NO_COLOR env var
+
 # v0.6.0 2023-09-23
 
 - more ANSI codes (bold, dim, italic, underline)
