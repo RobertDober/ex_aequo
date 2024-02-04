@@ -6,9 +6,9 @@ defmodule ExAequo.Mixfile do
   Some Tools Commonly Needed (commonly means once a year by me, but still)
   """
   @url "https://github.com/robertdober/ex_aequo"
-  @release_date "2023-09-29"
+  @release_date "2024-02-04"
 
-  @version "0.6.4"
+  @version "0.6.5"
   def project do
     [
       aliases: [docs: &build_docs/1],
@@ -41,16 +41,16 @@ defmodule ExAequo.Mixfile do
         release_date: @release_date,
         version: @version
       ],
-      applications: [],
       extra_applications: [:eex]
     ]
   end
 
   defp deps do
     [
+      {:dialyxir, "~> 1.4.3", runtime: false, only: [:dev]},
+      {:excoveralls, "~> 0.18.0", only: [:test]},
+      {:extractly, "~>0.5.3", only: [:dev]},
       {:minipeg, "~> 0.3.1"},
-      {:excoveralls, "~> 0.17.1", only: [:test]},
-      {:extractly, "~>0.5.3", only: [:dev]}
     ]
   end
 

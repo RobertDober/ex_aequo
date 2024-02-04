@@ -1,5 +1,5 @@
 defmodule ExAequo.Color.Escript do
-  import ExAequo.Color, only: [puts: 1, puts: 2]
+  import ExAequo.Color, only: [puts: 1]
 
   def main(args)
   def main(["-v" | _]), do: _version()
