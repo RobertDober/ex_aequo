@@ -1,4 +1,9 @@
+# v0.6.7 2024-02-21
+
+- Push Minipeg version to 0.5
+
 # v0.6.4 2023-10-01
+
 
 - Allow for Eex expansion in input
 
